@@ -18,3 +18,11 @@ class Content {
         self.position = position
     }
 }
+
+struct Source {
+    static func makeContent() -> [Content] {
+        return [.init(title: "Welcome to BusiCal", imageName: "1", position: 0),
+                .init(title: "Готовое решение для Вашего бизнеса", imageName: "2", position: 1),
+                .init(title: "Расчеты для бизнеса у Вас в кармане", imageName: "3", position: 2)]
+    }
+}
