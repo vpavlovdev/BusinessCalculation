@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		CE356FE729BCA50800A5A0C4 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE356FE629BCA50800A5A0C4 /* AuthViewController.swift */; };
 		CE356FEA29BCA51B00A5A0C4 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE356FE929BCA51B00A5A0C4 /* RegisterViewController.swift */; };
+		CE356FED29BCA8BF00A5A0C4 /* extention UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE356FEC29BCA8BF00A5A0C4 /* extention UIColor.swift */; };
+		CE356FF329BCC35D00A5A0C4 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE356FF229BCC35D00A5A0C4 /* LoginModel.swift */; };
+		CE356FF929BCD28900A5A0C4 /* CustomButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE356FF829BCD28900A5A0C4 /* CustomButtons.swift */; };
+		CE35700F29BE000300A5A0C4 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE35700E29BE000300A5A0C4 /* CustomTextField.swift */; };
 		CE67FB8429BB7E5500C21E2F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE67FB8329BB7E5500C21E2F /* AppDelegate.swift */; };
 		CE67FB8629BB7E5500C21E2F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE67FB8529BB7E5500C21E2F /* SceneDelegate.swift */; };
 		CE67FB8829BB7E5500C21E2F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE67FB8729BB7E5500C21E2F /* LoginViewController.swift */; };
@@ -19,6 +23,10 @@
 /* Begin PBXFileReference section */
 		CE356FE629BCA50800A5A0C4 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		CE356FE929BCA51B00A5A0C4 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		CE356FEC29BCA8BF00A5A0C4 /* extention UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "extention UIColor.swift"; sourceTree = "<group>"; };
+		CE356FF229BCC35D00A5A0C4 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
+		CE356FF829BCD28900A5A0C4 /* CustomButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtons.swift; sourceTree = "<group>"; };
+		CE35700E29BE000300A5A0C4 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		CE67FB8029BB7E5500C21E2F /* BusinessCalculation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BusinessCalculation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE67FB8329BB7E5500C21E2F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE67FB8529BB7E5500C21E2F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,11 +59,28 @@
 		CE356FE429BCA4ED00A5A0C4 /* LoginScreen */ = {
 			isa = PBXGroup;
 			children = (
-				CE67FB8729BB7E5500C21E2F /* LoginViewController.swift */,
-				CE356FE629BCA50800A5A0C4 /* AuthViewController.swift */,
+				CE356FF129BCC34B00A5A0C4 /* MainLogin */,
+				CE35700C29BDFCF800A5A0C4 /* Auth */,
 				CE356FE929BCA51B00A5A0C4 /* RegisterViewController.swift */,
 			);
 			path = LoginScreen;
+			sourceTree = "<group>";
+		};
+		CE356FF129BCC34B00A5A0C4 /* MainLogin */ = {
+			isa = PBXGroup;
+			children = (
+				CE67FB8729BB7E5500C21E2F /* LoginViewController.swift */,
+				CE356FF229BCC35D00A5A0C4 /* LoginModel.swift */,
+			);
+			path = MainLogin;
+			sourceTree = "<group>";
+		};
+		CE35700C29BDFCF800A5A0C4 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				CE356FE629BCA50800A5A0C4 /* AuthViewController.swift */,
+			);
+			path = Auth;
 			sourceTree = "<group>";
 		};
 		CE67FB7729BB7E5500C21E2F = {
@@ -80,6 +105,9 @@
 				CE356FD829BCA3AC00A5A0C4 /* Application */,
 				CE356FE429BCA4ED00A5A0C4 /* LoginScreen */,
 				CE67FB8C29BB7E6000C21E2F /* Assets.xcassets */,
+				CE356FEC29BCA8BF00A5A0C4 /* extention UIColor.swift */,
+				CE356FF829BCD28900A5A0C4 /* CustomButtons.swift */,
+				CE35700E29BE000300A5A0C4 /* CustomTextField.swift */,
 				CE67FB8E29BB7E6000C21E2F /* LaunchScreen.storyboard */,
 				CE67FB9129BB7E6000C21E2F /* Info.plist */,
 			);
@@ -156,10 +184,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE356FE729BCA50800A5A0C4 /* AuthViewController.swift in Sources */,
+				CE356FF329BCC35D00A5A0C4 /* LoginModel.swift in Sources */,
 				CE356FEA29BCA51B00A5A0C4 /* RegisterViewController.swift in Sources */,
+				CE356FF929BCD28900A5A0C4 /* CustomButtons.swift in Sources */,
 				CE67FB8829BB7E5500C21E2F /* LoginViewController.swift in Sources */,
 				CE67FB8429BB7E5500C21E2F /* AppDelegate.swift in Sources */,
 				CE67FB8629BB7E5500C21E2F /* SceneDelegate.swift in Sources */,
+				CE356FED29BCA8BF00A5A0C4 /* extention UIColor.swift in Sources */,
+				CE35700F29BE000300A5A0C4 /* CustomTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
