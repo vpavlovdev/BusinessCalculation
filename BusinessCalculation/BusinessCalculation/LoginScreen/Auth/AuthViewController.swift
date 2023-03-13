@@ -31,6 +31,16 @@ class AuthViewController: UIViewController {
         button.configure(type: .login)
         return button
     }()
+    private let googleButton: CustomButton = {
+        let button = CustomButton()
+        button.configure(type: .google)
+        return button
+    }()
+    private let appleButton: CustomButton = {
+        let button = CustomButton()
+        button.configure(type: .apple)
+        return button
+    }()
     
     
     override func viewDidLoad() {
@@ -48,7 +58,7 @@ class AuthViewController: UIViewController {
     
     private func setupUserInterface() {
         view.backgroundColor = .mainWhite
-        [mainLabel, loginNameTextField, passworTextField, loginButton].forEach {
+        [mainLabel, loginNameTextField, passworTextField, loginButton, googleButton, appleButton].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -61,17 +71,27 @@ class AuthViewController: UIViewController {
             loginNameTextField.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: 20),
             loginNameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             loginNameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            loginNameTextField.heightAnchor.constraint(equalToConstant: 40),
+            loginNameTextField.heightAnchor.constraint(equalToConstant: 50),
             
             passworTextField.topAnchor.constraint(equalTo: loginNameTextField.bottomAnchor, constant: 6),
             passworTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             passworTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            passworTextField.heightAnchor.constraint(equalToConstant: 40),
+            passworTextField.heightAnchor.constraint(equalToConstant: 50),
             
             loginButton.topAnchor.constraint(equalTo: passworTextField.bottomAnchor, constant: 10),
             loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             loginButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            googleButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 30),
+            googleButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            googleButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            googleButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            appleButton.topAnchor.constraint(equalTo: googleButton.bottomAnchor, constant: 10),
+            appleButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            appleButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            appleButton.heightAnchor.constraint(equalToConstant: 50),
             
         ])
     }

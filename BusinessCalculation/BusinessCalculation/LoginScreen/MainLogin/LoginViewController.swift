@@ -19,10 +19,9 @@ final class LoginViewController: UIViewController {
     
     private let pageControl: UIPageControl = {
         let page = UIPageControl()
-        page.preferredIndicatorImage = UIImage(systemName: "banknote")
-        page.pageIndicatorTintColor = .blue
-        page.currentPageIndicatorTintColor = .red
-        page.backgroundStyle = .prominent
+        page.pageIndicatorTintColor = .tintPageControl
+        page.currentPageIndicatorTintColor = .currentPageControl
+        page.backgroundStyle = .automatic
         return page
     }()
     private let loginButton: CustomButton = {

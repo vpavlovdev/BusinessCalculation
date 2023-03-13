@@ -10,17 +10,23 @@ import UIKit
 enum CustomButtonType {
     case login
     case registration
+    case google
+    case apple
     
     var title: String {
         switch self {
         case .login: return "Log In"
         case .registration: return "New to BusiCal? Sign Up"
+        case .google: return "Continue with Google"
+        case .apple: return "Continue with Apple"
         }
     }
     var textColor: UIColor {
         switch self {
         case .login: return .white
         case .registration: return .black
+        case .google: return .black
+        case .apple: return .black
         }
     }
     var backgroundColor: UIColor {
@@ -45,7 +51,7 @@ enum CustomButtonType {
     var font: UIFont {
         switch self {
         case .registration: return .italicSystemFont(ofSize: 20)
-        default: return .systemFont(ofSize: 20)
+        default: return .boldSystemFont(ofSize: 22)
         }
     }
 }
