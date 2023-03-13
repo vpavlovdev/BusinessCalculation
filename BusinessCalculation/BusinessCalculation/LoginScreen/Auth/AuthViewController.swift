@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AuthViewController: UIViewController {
+final class AuthViewController: UIViewController {
     private let mainLabel: UILabel = {
         let label = UILabel()
         label.text = "Log in to BusiCal"
