@@ -32,7 +32,7 @@ enum CustomButtonType {
     var backgroundColor: UIColor {
         switch self {
         case .registration: return .clear
-        default: return .green
+        default: return .currentPageControl
         }
     }
     var borderColor: CGColor {
@@ -45,6 +45,7 @@ enum CustomButtonType {
     var borderWidth: CGFloat {
         switch self {
         case .registration: return 1 // need 0
+        case .login: return 0
         default: return 1
         }
     }

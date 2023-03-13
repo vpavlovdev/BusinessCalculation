@@ -9,13 +9,7 @@ import UIKit
 
 final class LoginViewController: UIViewController {
     private let content: [Content] = Source.makeContent()
-    private let scrollView : UIScrollView = {
-        let scroll = UIScrollView()
-        scroll.contentSize = .init(width: Int(UIScreen.main.bounds.width), height: 400)
-        scroll.backgroundColor = .gray
-        scroll.isPagingEnabled = true
-        return scroll
-    }()
+    private var onboardCollectionView: UICollectionView!
     
     private let pageControl: UIPageControl = {
         let page = UIPageControl()
@@ -38,6 +32,7 @@ final class LoginViewController: UIViewController {
         super.viewDidLoad()
         setupUserInterface()
         setupNavigationBar()
+        setupCollectionView()
         addMethods()
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -52,22 +47,40 @@ final class LoginViewController: UIViewController {
         navigationItem.title = "Business calculation"
         navigationController?.navigationBar.prefersLargeTitles = true
     }
-    
+    private func setupCollectionView() {
+        onboardCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout())
+        view.addSubview(onboardCollectionView)
+        onboardCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        //MARK: UICollectionView Constraint
+        NSLayoutConstraint.activate([
+            onboardCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
+            onboardCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            onboardCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            onboardCollectionView.heightAnchor.constraint(equalToConstant: 420),
+        ])
+        onboardCollectionView.register(LoginCollectionViewCell.self, forCellWithReuseIdentifier: "LoginCell")
+        onboardCollectionView.dataSource = self
+        onboardCollectionView.delegate = self
+        onboardCollectionView.backgroundColor = .clear
+        onboardCollectionView.showsHorizontalScrollIndicator = false
+    }
+    private func flowLayout() -> UICollectionViewFlowLayout {
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = .init(width: view.bounds.width, height: 420)
+        layout.scrollDirection = .horizontal
+        return layout
+    }
     private func setupUserInterface() {
         view.backgroundColor = .mainWhite
-        [scrollView, pageControl, loginButton, signupButton].forEach {
+        [pageControl, loginButton, signupButton].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
         pageControl.numberOfPages = content.count
+        //MARK: UIconstraint
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.heightAnchor.constraint(equalToConstant: 400),
-            
             pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            pageControl.topAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 10),
+            pageControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 480),
             
             loginButton.topAnchor.constraint(equalTo: pageControl.bottomAnchor, constant: 40),
             loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
@@ -96,16 +109,16 @@ final class LoginViewController: UIViewController {
     
 }
 
-extension LoginViewController {
-    private func addContent(_ content: Content) {
-        let imageView = UIImageView()
-        imageView.image = UIImage()
-        
-        let label = UILabel()
-        label.text = "Welcome to BusiCal \n(Business calculation)"
-        label.numberOfLines = 0
-        label.font = .boldSystemFont(ofSize: 20)
-        label.textAlignment = .center
+extension LoginViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        content.count
     }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LoginCell", for: indexPath) as? LoginCollectionViewCell else { fatalError("Cell error") }
+        cell.configureCell(content: content[indexPath.item])
+        return cell
+    }
+   
 }
 

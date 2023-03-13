@@ -10,19 +10,19 @@ import Foundation
 class Content {
     let title: String
     let imageName: String
-    let position: Int
+    let description: String
     
-    init(title: String, imageName: String, position: Int) {
+    init(title: String, imageName: String, description: String) {
         self.title = title
         self.imageName = imageName
-        self.position = position
+        self.description = description
     }
 }
 
 struct Source {
     static func makeContent() -> [Content] {
-        return [.init(title: "Welcome to BusiCal", imageName: "1", position: 0),
-                .init(title: "Готовое решение для Вашего бизнеса", imageName: "2", position: 1),
-                .init(title: "Расчеты для бизнеса у Вас в кармане", imageName: "3", position: 2)]
+        return [.init(title: "Welcome to BusiCal", imageName: "1", description: "Description 1"),
+                .init(title: "Готовое решение для Вашего бизнеса", imageName: "2", description: "Description 2"),
+                .init(title: "Расчеты для бизнеса у Вас в кармане", imageName: "3", description: "Description 3")]
     }
 }

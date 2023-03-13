@@ -13,7 +13,7 @@ class LoginCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = .blue
-        label.font = .boldSystemFont(ofSize: 22)
+        label.font = .boldSystemFont(ofSize: 24)
         return label
     }()
     private let descriptionLabel: UILabel = {
@@ -37,8 +37,26 @@ class LoginCollectionViewCell: UICollectionViewCell {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
         NSLayoutConstraint.activate([
-        
-        
+            mainImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            mainImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            mainImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            mainImageView.heightAnchor.constraint(equalToConstant: 320),
+            
+            mainLabel.topAnchor.constraint(equalTo: mainImageView.bottomAnchor, constant: 6),
+            mainLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            mainLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            mainLabel.heightAnchor.constraint(equalToConstant: 50),
+            
+            descriptionLabel.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: 3),
+            descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            descriptionLabel.heightAnchor.constraint(equalToConstant: 50),
         ])
+    }
+    //MARK: Configure UICollectionViewCell
+    func configureCell(content: Content) {
+        mainImageView.image = UIImage(named: content.imageName)
+        mainLabel.text = content.title
+        descriptionLabel.text = content.description
     }
 }
