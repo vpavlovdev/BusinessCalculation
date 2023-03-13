@@ -9,8 +9,9 @@ import UIKit
 
 final class LoginViewController: UIViewController {
     private let content: [Content] = Source.makeContent()
-    private var onboardCollectionView: UICollectionView!
+    private var currentPage = 1
     
+    private var onboardCollectionView: UICollectionView!
     private let pageControl: UIPageControl = {
         let page = UIPageControl()
         page.pageIndicatorTintColor = .tintPageControl
@@ -63,11 +64,13 @@ final class LoginViewController: UIViewController {
         onboardCollectionView.delegate = self
         onboardCollectionView.backgroundColor = .clear
         onboardCollectionView.showsHorizontalScrollIndicator = false
+        onboardCollectionView.isPagingEnabled = true
     }
     private func flowLayout() -> UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = .init(width: view.bounds.width, height: 420)
+        layout.itemSize = .init(width: view.frame.width, height: 420)
         layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 0
         return layout
     }
     private func setupUserInterface() {
@@ -119,6 +122,10 @@ extension LoginViewController: UICollectionViewDataSource, UICollectionViewDeleg
         cell.configureCell(content: content[indexPath.item])
         return cell
     }
-   
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let width = scrollView.frame.width
+        currentPage = Int(scrollView.contentOffset.x / width)
+        pageControl.currentPage = currentPage
+    }
 }
 

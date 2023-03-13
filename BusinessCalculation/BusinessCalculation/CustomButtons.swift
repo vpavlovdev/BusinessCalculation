@@ -37,14 +37,14 @@ enum CustomButtonType {
     }
     var borderColor: CGColor {
         switch self {
-        case .registration: return UIColor.black.cgColor //need clear 
+        case .registration: return UIColor.clear.cgColor //need clear
         default: return UIColor.black.cgColor
         }
     }
     
     var borderWidth: CGFloat {
         switch self {
-        case .registration: return 1 // need 0
+        case .registration: return 0 // need 0
         case .login: return 0
         default: return 1
         }

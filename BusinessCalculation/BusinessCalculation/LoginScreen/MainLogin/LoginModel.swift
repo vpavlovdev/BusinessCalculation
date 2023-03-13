@@ -21,8 +21,8 @@ class Content {
 
 struct Source {
     static func makeContent() -> [Content] {
-        return [.init(title: "Welcome to BusiCal", imageName: "1", description: "Description 1"),
-                .init(title: "Готовое решение для Вашего бизнеса", imageName: "2", description: "Description 2"),
-                .init(title: "Расчеты для бизнеса у Вас в кармане", imageName: "3", description: "Description 3")]
+        return [.init(title: "Welcome to BusiCal", imageName: "1", description: "BusiCal - Это готовое решение для Вашего бизнеса"),
+                .init(title: "Появилась идея для бизнеса?", imageName: "2", description: "Расчеты для бизнеса у Вас в кармане"),
+                .init(title: "Владете бизнесом?", imageName: "3", description: "BusiCal поможет Вам управлять им")]
     }
 }

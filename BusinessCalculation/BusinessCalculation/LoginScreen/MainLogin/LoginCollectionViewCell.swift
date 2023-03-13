@@ -12,14 +12,16 @@ class LoginCollectionViewCell: UICollectionViewCell {
     private let mainLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.textColor = .blue
-        label.font = .boldSystemFont(ofSize: 24)
+        label.textColor = .black
+        label.numberOfLines = 0
+        label.font = .boldSystemFont(ofSize: 23)
         return label
     }()
     private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = .systemGray
+        label.numberOfLines = 0
         label.font = .systemFont(ofSize: 20)
         return label
     }()
@@ -45,7 +47,7 @@ class LoginCollectionViewCell: UICollectionViewCell {
             mainLabel.topAnchor.constraint(equalTo: mainImageView.bottomAnchor, constant: 6),
             mainLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             mainLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            mainLabel.heightAnchor.constraint(equalToConstant: 50),
+            mainLabel.heightAnchor.constraint(equalToConstant: 30),
             
             descriptionLabel.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: 3),
             descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
