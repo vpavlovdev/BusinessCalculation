@@ -9,8 +9,8 @@ import UIKit
 
 final class LoginViewController: UIViewController {
     private let content: [Content] = Source.makeContent()
-    private var currentPage = 1
     
+    //MARK: UIElements
     private var onboardCollectionView: UICollectionView!
     private let pageControl: UIPageControl = {
         let page = UIPageControl()
@@ -29,6 +29,8 @@ final class LoginViewController: UIViewController {
         button.configure(type: .registration)
         return button
     }()
+    
+    //MARK: Lifecicle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUserInterface()
@@ -36,11 +38,8 @@ final class LoginViewController: UIViewController {
         setupCollectionView()
         addMethods()
     }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-    }
-    
+   
+    //MARK: Setup UI
     private func setupNavigationBar() {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithTransparentBackground()
@@ -52,7 +51,8 @@ final class LoginViewController: UIViewController {
         onboardCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout())
         view.addSubview(onboardCollectionView)
         onboardCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        //MARK: UICollectionView Constraint
+        
+    //MARK: UICollectionView Constraint
         NSLayoutConstraint.activate([
             onboardCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
             onboardCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -100,6 +100,7 @@ final class LoginViewController: UIViewController {
     private func addMethods() {
         loginButton.addTarget(self, action: #selector(loginButtonTapped(sender:)), for: .touchUpInside)
         signupButton.addTarget(self, action: #selector(signUpButtonTapped(sender:)), for: .touchUpInside)
+        pageControl.addTarget(self, action: #selector(pageDidChange(sender:)), for: .valueChanged)
     }
     @objc private func loginButtonTapped(sender: CustomButton) {
         let vc = AuthViewController()
@@ -108,6 +109,10 @@ final class LoginViewController: UIViewController {
     @objc private func signUpButtonTapped(sender: CustomButton) {
         let vc = RegisterViewController()
         navigationController?.pushViewController(vc, animated: true)
+    }
+    @objc private func pageDidChange(sender: UIPageControl) {
+        let indexPath = IndexPath(item: pageControl.currentPage, section: 0)
+        onboardCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
     
 }
@@ -124,8 +129,7 @@ extension LoginViewController: UICollectionViewDataSource, UICollectionViewDeleg
     }
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let width = scrollView.frame.width
-        currentPage = Int(scrollView.contentOffset.x / width)
-        pageControl.currentPage = currentPage
+        pageControl.currentPage = Int(scrollView.contentOffset.x / width)
     }
 }
 
