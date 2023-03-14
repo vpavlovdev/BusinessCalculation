@@ -8,11 +8,12 @@
 import UIKit
 
 final class AuthViewController: UIViewController {
+    //MARK: UIElements
     private let mainLabel: UILabel = {
         let label = UILabel()
         label.text = "Log in to BusiCal"
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 22)
+        label.font = .boldSystemFont(ofSize: 24)
         return label
     }()
     private let loginNameTextField: CustomTextField = {
@@ -23,6 +24,7 @@ final class AuthViewController: UIViewController {
     }()
     private let passworTextField: CustomTextField = {
         let textField = CustomTextField()
+        textField.setupEyeImageLeftView()
         textField.placeholder = "Entry your password"
         return textField
     }()
@@ -41,13 +43,19 @@ final class AuthViewController: UIViewController {
         button.configure(type: .apple)
         return button
     }()
-    
-    
+    //MARK: Life cicle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
         setupUserInterface()
     }
+    
+    //MARK: Create SeparatorView
+    private func createSeparator() -> UIStackView {
+        
+        return UIStackView()
+    }
+    //MARK: Setup UI
     private func setupNavigationBar() {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithTransparentBackground()
@@ -55,7 +63,6 @@ final class AuthViewController: UIViewController {
         navigationItem.title = "Business calculation"
         navigationController?.navigationBar.prefersLargeTitles = true
     }
-    
     private func setupUserInterface() {
         view.backgroundColor = .mainWhite
         [mainLabel, loginNameTextField, passworTextField, loginButton, googleButton, appleButton].forEach {
