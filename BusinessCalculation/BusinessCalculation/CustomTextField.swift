@@ -9,7 +9,7 @@ import UIKit
 
 class CustomTextField: UITextField {
     private var secureText = true
-   
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupSettings()
@@ -36,25 +36,28 @@ class CustomTextField: UITextField {
         addSubview(view)
     }
     func setupEyeImageLeftView() {
-        guard let eyeImage = UIImage(systemName: "eye"),
-              let eyeSlash = UIImage(systemName: "eye.slash") else { return }
+        guard let eyeImage = UIImage(systemName: "eye") else { return }
         let view = UIView(frame: CGRect(x: 0, y: 0, width: eyeImage.size.width, height: eyeImage.size.height))
         let imageView = UIImageView(frame: CGRect(x: -7, y: 0, width: eyeImage.size.width, height: eyeImage.size.height))
         imageView.tintColor = .black
+        imageView.image = eyeImage
+       
         isSecureTextEntry = secureText
-        imageView.image = isSecureTextEntry ? eyeImage : eyeSlash
-        view.isUserInteractionEnabled = true
+        
+        //MARK: TapGesture for secure
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(actionImage))
-        view.addGestureRecognizer(tapGesture)
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(tapGesture)
+        
         view.addSubview(imageView)
         rightView = view
         rightViewMode = .always
         addSubview(view)
     }
-    
+    //MARK: Action for tapGesture
     @objc private func actionImage(sender: UITapGestureRecognizer) {
         let tappedImage = sender.view as? UIImageView
-        print(secureText)
+        print("tapped")
         if secureText {
             isSecureTextEntry = false
             secureText = false
@@ -65,6 +68,7 @@ class CustomTextField: UITextField {
             secureText = true
         }
     }
+    
     override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
         .init(x: 35, y: 0, width: bounds.width, height: bounds.height)
     }
