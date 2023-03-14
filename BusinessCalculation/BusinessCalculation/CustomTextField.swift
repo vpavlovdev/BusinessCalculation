@@ -78,6 +78,7 @@ class CustomTextField: UITextField {
     override func textRect(forBounds bounds: CGRect) -> CGRect {
         .init(x: 35, y: 0, width: bounds.width, height: bounds.height)
     }
+  
     
 
 }

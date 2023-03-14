@@ -19,12 +19,14 @@ final class AuthViewController: UIViewController {
     private let loginNameTextField: CustomTextField = {
         let textField = CustomTextField()
         textField.setupPersonImageLeftView()
+        textField.tag = 0
         textField.placeholder = "Username or Email"
         return textField
     }()
     private let passworTextField: CustomTextField = {
         let textField = CustomTextField()
         textField.setupEyeImageLeftView()
+        textField.tag = 1
         textField.placeholder = "Entry your password"
         return textField
     }()
@@ -43,6 +45,7 @@ final class AuthViewController: UIViewController {
         button.configure(type: .apple)
         return button
     }()
+    
     //MARK: Life cicle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,8 +55,22 @@ final class AuthViewController: UIViewController {
     
     //MARK: Create SeparatorView
     private func createSeparator() -> UIStackView {
+        let viewOne = UIView(frame: CGRect(x: 0, y: 0, width: 150, height: 1))
+        let viewTwo = UIView(frame: CGRect(x: 0, y: 0, width: 150, height: 1))
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 20)
+        label.text = "or"
         
-        return UIStackView()
+        [viewOne, viewTwo].forEach {
+            $0.backgroundColor = .gray
+        }
+        let stack = UIStackView(arrangedSubviews: [viewOne, label, viewTwo])
+        stack.axis = .horizontal
+        stack.alignment = .center
+        stack.distribution = .equalCentering
+        stack.spacing = 2
+        
+        return stack
     }
     //MARK: Setup UI
     private func setupNavigationBar() {
@@ -65,10 +82,14 @@ final class AuthViewController: UIViewController {
     }
     private func setupUserInterface() {
         view.backgroundColor = .mainWhite
-        [mainLabel, loginNameTextField, passworTextField, loginButton, googleButton, appleButton].forEach {
+        let separator = createSeparator()
+        
+        [mainLabel, loginNameTextField, passworTextField, loginButton, googleButton, appleButton, separator].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
+        loginNameTextField.delegate = self
+        passworTextField.delegate = self
         NSLayoutConstraint.activate([
             mainLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40),
             mainLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
@@ -100,7 +121,21 @@ final class AuthViewController: UIViewController {
             appleButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             appleButton.heightAnchor.constraint(equalToConstant: 50),
             
+            separator.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            separator.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            separator.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 5),
+            separator.heightAnchor.constraint(equalToConstant: 10)
         ])
     }
     
+}
+
+//MARK: Extention AuthViewContoller
+extension AuthViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField.tag == 1 {
+            textField.resignFirstResponder()
+        }
+        return true
+    }
 }
