@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AuthenticationServices
 
 final class AuthViewController: UIViewController {
     //MARK: UIElements
@@ -40,13 +41,13 @@ final class AuthViewController: UIViewController {
         button.configure(type: .google)
         return button
     }()
-    private let appleButton: CustomButton = {
-        let button = CustomButton()
-        button.configure(type: .apple)
+    private let appleButton: ASAuthorizationAppleIDButton = {
+        let button = ASAuthorizationAppleIDButton(authorizationButtonType: .continue, authorizationButtonStyle: .black)
+        button.cornerRadius = 15
         return button
     }()
     
-    //MARK: Life cicle
+        //MARK: Life cicle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
@@ -54,23 +55,36 @@ final class AuthViewController: UIViewController {
     }
     
     //MARK: Create SeparatorView
-    private func createSeparator() -> UIStackView {
-        let viewOne = UIView(frame: CGRect(x: 0, y: 0, width: 150, height: 1))
-        let viewTwo = UIView(frame: CGRect(x: 0, y: 0, width: 150, height: 1))
+    private func createSeparator() -> UIView {
+        let separatorView = UIView()
+        let viewOne = UIView()
+        viewOne.backgroundColor = .gray
+        let viewTwo = UIView()
+        viewTwo.backgroundColor = .gray
         let label = UILabel()
-        label.font = .systemFont(ofSize: 20)
+        label.font = .systemFont(ofSize: 15)
         label.text = "or"
         
-        [viewOne, viewTwo].forEach {
-            $0.backgroundColor = .gray
+        [viewOne, viewTwo, label].forEach {
+            separatorView.addSubview($0)
+            $0.translatesAutoresizingMaskIntoConstraints = false
         }
-        let stack = UIStackView(arrangedSubviews: [viewOne, label, viewTwo])
-        stack.axis = .horizontal
-        stack.alignment = .center
-        stack.distribution = .equalCentering
-        stack.spacing = 2
-        
-        return stack
+        NSLayoutConstraint.activate([
+            label.centerXAnchor.constraint(equalTo: separatorView.centerXAnchor),
+            label.widthAnchor.constraint(equalToConstant: 20),
+            label.heightAnchor.constraint(equalToConstant: 20),
+            
+            viewOne.centerYAnchor.constraint(equalTo: label.centerYAnchor),
+            viewOne.leadingAnchor.constraint(equalTo: separatorView.leadingAnchor, constant: 30),
+            viewOne.trailingAnchor.constraint(equalTo: label.leadingAnchor, constant: -10),
+            viewOne.heightAnchor.constraint(equalToConstant: 1),
+            
+            viewTwo.centerYAnchor.constraint(equalTo: label.centerYAnchor),
+            viewTwo.leadingAnchor.constraint(equalTo: label.trailingAnchor, constant: 10),
+            viewTwo.trailingAnchor.constraint(equalTo: separatorView.trailingAnchor, constant: -30),
+            viewTwo.heightAnchor.constraint(equalToConstant: 1),
+        ])
+        return separatorView
     }
     //MARK: Setup UI
     private func setupNavigationBar() {
@@ -107,24 +121,23 @@ final class AuthViewController: UIViewController {
             passworTextField.heightAnchor.constraint(equalToConstant: 50),
             
             loginButton.topAnchor.constraint(equalTo: passworTextField.bottomAnchor, constant: 10),
-            loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             loginButton.heightAnchor.constraint(equalToConstant: 50),
             
-            googleButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 30),
-            googleButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            googleButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            googleButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 50),
+            googleButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            googleButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             googleButton.heightAnchor.constraint(equalToConstant: 50),
             
             appleButton.topAnchor.constraint(equalTo: googleButton.bottomAnchor, constant: 10),
-            appleButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            appleButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            appleButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            appleButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             appleButton.heightAnchor.constraint(equalToConstant: 50),
             
             separator.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             separator.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            separator.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 5),
-            separator.heightAnchor.constraint(equalToConstant: 10)
+            separator.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 15),
         ])
     }
     
@@ -133,7 +146,9 @@ final class AuthViewController: UIViewController {
 //MARK: Extention AuthViewContoller
 extension AuthViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField.tag == 1 {
+        if textField.tag == 0 {
+            passworTextField.becomeFirstResponder()
+        } else if textField.tag == 1 {
             textField.resignFirstResponder()
         }
         return true

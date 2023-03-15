@@ -25,7 +25,7 @@ enum CustomButtonType {
         switch self {
         case .login: return .white
         case .registration: return .black
-        case .google: return .black
+        case .google: return .white
         case .apple: return .black
         }
     }
