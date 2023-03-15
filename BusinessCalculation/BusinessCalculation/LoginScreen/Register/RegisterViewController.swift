@@ -117,7 +117,8 @@ class RegisterViewController: UIViewController {
         registerTableView.separatorStyle = .none
         registerTableView.dataSource = self
         registerTableView.delegate = self
-        registerTableView.verticalScrollIndicatorInsets = .init(top: 0, left: 0, bottom: 0, right: 0)
+        registerTableView.bounces = false
+        
     }
 }
 
