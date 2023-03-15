@@ -28,6 +28,7 @@ class CustomTextField: UITextField {
         guard let personImage = UIImage(systemName: "person.fill") else { return }
         let view = UIView(frame: CGRect(x: 0, y: 0, width: personImage.size.width, height: personImage.size.height))
         let imageView = UIImageView(frame: CGRect(x: 7, y: 0, width: personImage.size.width, height: personImage.size.height))
+        keyboardType = .URL
         imageView.tintColor = .black
         imageView.image = personImage
         view.addSubview(imageView)
@@ -41,7 +42,7 @@ class CustomTextField: UITextField {
         let imageView = UIImageView(frame: CGRect(x: -7, y: 0, width: eyeImage.size.width, height: eyeImage.size.height))
         imageView.tintColor = .black
         imageView.image = eyeImage
-       
+        textContentType = .password
         isSecureTextEntry = secureText
         
         //MARK: TapGesture for secure
@@ -57,7 +58,6 @@ class CustomTextField: UITextField {
     //MARK: Action for tapGesture
     @objc private func actionImage(sender: UITapGestureRecognizer) {
         let tappedImage = sender.view as? UIImageView
-        print("tapped")
         if secureText {
             isSecureTextEntry = false
             secureText = false

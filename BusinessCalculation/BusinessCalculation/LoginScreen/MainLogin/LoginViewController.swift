@@ -86,8 +86,8 @@ final class LoginViewController: UIViewController {
             pageControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 480),
             
             loginButton.topAnchor.constraint(equalTo: pageControl.bottomAnchor, constant: 40),
-            loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             loginButton.heightAnchor.constraint(equalToConstant: 50),
             
             signupButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 20),
