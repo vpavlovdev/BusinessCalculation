@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AuthenticationServices
 
 class RegisterViewController: UIViewController {
     private let info: [TypeCell] = RegisterSource.textField()
@@ -22,9 +23,9 @@ class RegisterViewController: UIViewController {
         button.configure(type: .google)
         return button
     }()
-    private let appleButton: CustomButton = {
-        let button = CustomButton()
-        button.configure(type: .apple)
+    private let appleButton: ASAuthorizationAppleIDButton = {
+        let button = ASAuthorizationAppleIDButton(authorizationButtonType: .continue, authorizationButtonStyle: .black)
+        button.cornerRadius = 15
         return button
     }()
     
@@ -32,7 +33,7 @@ class RegisterViewController: UIViewController {
         super.viewDidLoad()
         setupNavigationBar()
         setupUserInterface()
-        setupTabbleView()
+        setupTableView()
     }
     private func setupNavigationBar() {
         let appearance = UINavigationBarAppearance()
@@ -41,9 +42,43 @@ class RegisterViewController: UIViewController {
         navigationItem.title = "Business calculation"
         navigationController?.navigationBar.prefersLargeTitles = true
     }
+    //MARK: Create SeparatorView
+    private func createSeparator() -> UIView {
+        let separatorView = UIView()
+        let viewOne = UIView()
+        viewOne.backgroundColor = .gray
+        let viewTwo = UIView()
+        viewTwo.backgroundColor = .gray
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 15)
+        label.text = "or"
+        
+        [viewOne, viewTwo, label].forEach {
+            separatorView.addSubview($0)
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
+        NSLayoutConstraint.activate([
+            label.centerXAnchor.constraint(equalTo: separatorView.centerXAnchor),
+            label.widthAnchor.constraint(equalToConstant: 20),
+            label.heightAnchor.constraint(equalToConstant: 20),
+            
+            viewOne.centerYAnchor.constraint(equalTo: label.centerYAnchor),
+            viewOne.leadingAnchor.constraint(equalTo: separatorView.leadingAnchor, constant: 30),
+            viewOne.trailingAnchor.constraint(equalTo: label.leadingAnchor, constant: -10),
+            viewOne.heightAnchor.constraint(equalToConstant: 1),
+            
+            viewTwo.centerYAnchor.constraint(equalTo: label.centerYAnchor),
+            viewTwo.leadingAnchor.constraint(equalTo: label.trailingAnchor, constant: 10),
+            viewTwo.trailingAnchor.constraint(equalTo: separatorView.trailingAnchor, constant: -30),
+            viewTwo.heightAnchor.constraint(equalToConstant: 1),
+        ])
+        return separatorView
+    }
     private func setupUserInterface() {
         view.backgroundColor = .mainWhite
-        [mainLabel, googleButton, appleButton].forEach {
+        let separator = createSeparator()
+        
+        [mainLabel, googleButton, appleButton, separator].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -54,21 +89,26 @@ class RegisterViewController: UIViewController {
             mainLabel.heightAnchor.constraint(equalToConstant: 30),
             
             googleButton.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: 50),
-            googleButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            googleButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            googleButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            googleButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             googleButton.heightAnchor.constraint(equalToConstant: 50),
             
             appleButton.topAnchor.constraint(equalTo: googleButton.bottomAnchor, constant: 10),
-            appleButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            appleButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            appleButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            appleButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             appleButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            separator.topAnchor.constraint(equalTo: appleButton.bottomAnchor, constant: 15),
+            separator.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            separator.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
     }
-    private func setupTabbleView() {
+    //MARK: Setup UITable View
+    private func setupTableView() {
         view.addSubview(registerTableView)
         registerTableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            registerTableView.topAnchor.constraint(equalTo: appleButton.bottomAnchor, constant: 30),
+            registerTableView.topAnchor.constraint(equalTo: appleButton.bottomAnchor, constant: 50),
             registerTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             registerTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             registerTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -81,6 +121,7 @@ class RegisterViewController: UIViewController {
     }
 }
 
+//MARK: Extention UITableView
 extension RegisterViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         info.count
