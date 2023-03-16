@@ -56,6 +56,11 @@ enum CustomButtonType {
         }
     }
 }
+enum CheckBoxType {
+    case uncheked
+    case cheked
+    
+}
 
 final class CustomButton: UIButton {
     var type: CustomButtonType?
@@ -75,5 +80,11 @@ final class CustomButton: UIButton {
         layer.borderWidth = type.borderWidth
         layer.borderColor = type.borderColor
         titleLabel?.font = type.font
+    }
+    func checkConfigure() {
+        setBackgroundImage(UIImage(), for: .normal)
+        layer.cornerRadius = 10
+        layer.borderWidth = 2
+        layer.borderColor = UIColor.gray.cgColor
     }
 }

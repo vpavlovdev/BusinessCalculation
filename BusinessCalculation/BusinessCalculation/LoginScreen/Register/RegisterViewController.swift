@@ -28,7 +28,6 @@ class RegisterViewController: UIViewController {
         button.cornerRadius = 15
         return button
     }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
@@ -74,6 +73,7 @@ class RegisterViewController: UIViewController {
         ])
         return separatorView
     }
+    //MARK: Setup UI
     private func setupUserInterface() {
         view.backgroundColor = .mainWhite
         let separator = createSeparator()
@@ -118,21 +118,21 @@ class RegisterViewController: UIViewController {
         registerTableView.dataSource = self
         registerTableView.delegate = self
         registerTableView.bounces = false
-        
+
     }
 }
 
-//MARK: Extention UITableView
+    //MARK: Extention UITableView
 extension RegisterViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         info.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "register Cell", for: indexPath) as? RegisterTableViewCell else { fatalError() }
         cell.config(parametrs: info[indexPath.row])
         return cell
     }
-    
-    
+
+
 }
