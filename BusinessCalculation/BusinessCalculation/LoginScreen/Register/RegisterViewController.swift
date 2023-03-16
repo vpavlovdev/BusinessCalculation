@@ -73,7 +73,9 @@ class RegisterViewController: UIViewController {
         ])
         return separatorView
     }
+
     //MARK: Setup UI
+
     private func setupUserInterface() {
         view.backgroundColor = .mainWhite
         let separator = createSeparator()
@@ -119,10 +121,16 @@ class RegisterViewController: UIViewController {
         registerTableView.delegate = self
         registerTableView.bounces = false
 
+
     }
 }
 
     //MARK: Extention UITableView
+
+        
+    }
+}
+
 extension RegisterViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         info.count
