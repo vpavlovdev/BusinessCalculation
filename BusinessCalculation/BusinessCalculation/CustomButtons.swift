@@ -12,6 +12,7 @@ enum CustomButtonType {
     case registration
     case google
     case apple
+    case createButton
     
     var title: String {
         switch self {
@@ -19,14 +20,16 @@ enum CustomButtonType {
         case .registration: return "New to BusiCal? Sign Up"
         case .google: return "Continue with Google"
         case .apple: return "Continue with Apple"
+        case .createButton: return "Create my account"
         }
     }
     var textColor: UIColor {
         switch self {
         case .login: return .white
-        case .registration: return .black
+        case .registration: return .blue
         case .google: return .white
         case .apple: return .black
+        case .createButton: return .white
         }
     }
     var backgroundColor: UIColor {
@@ -55,11 +58,6 @@ enum CustomButtonType {
         default: return .boldSystemFont(ofSize: 22)
         }
     }
-}
-enum CheckBoxType {
-    case uncheked
-    case cheked
-    
 }
 
 final class CustomButton: UIButton {

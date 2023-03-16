@@ -28,9 +28,16 @@ class RegistationViewController: UIViewController {
     }()
     private let scrollView: UIScrollView = {
         let scroll = UIScrollView()
+        scroll.showsHorizontalScrollIndicator = false
         scroll.contentSize = .init(width: 450, height: 500)
         return scroll
     }()
+    private let createButton: CustomButton = {
+        let button = CustomButton()
+        button.configure(type: .createButton)
+        return button
+    }()
+    
     //TextFields
     private let firstNameTextField: CustomTextField = {
         let textField = CustomTextField()
@@ -68,10 +75,12 @@ class RegistationViewController: UIViewController {
         return button
     }()
     //Text
-    private let emailText: UILabel = {
-        let label = UILabel()
+    private let emailText: UITextView = {
+        let label = UITextView()
         label.text = "I agree to send emails."
         label.textAlignment = .justified
+        label.isScrollEnabled = false
+        label.isEditable = false
         label.font = .systemFont(ofSize: 16)
         return label
     }()
@@ -80,8 +89,8 @@ class RegistationViewController: UIViewController {
         textView.text = "I understand and agree to the Tearms of Service, including the Privacy Policy."
         textView.textAlignment = .justified
         textView.font = .systemFont(ofSize: 16)
-        textView.textContainerInset = .init(top: 2, left: 2, bottom: 2, right: 2)
         textView.isEditable = false
+        textView.isScrollEnabled = false
         return textView
     }()
     //MARK: LifeCicle
@@ -134,7 +143,7 @@ class RegistationViewController: UIViewController {
     }
     //MARK: Setup UIScrollView
     private func setupScrollView() {
-        [firstNameTextField, lastNameTextField, emailTextField, passwordTextField, checkBoxEmailButton].forEach {
+        [firstNameTextField, lastNameTextField, emailTextField, passwordTextField, checkBoxEmailButton, emailText, checkBoxTearmButton, tearmsText, createButton].forEach {
             scrollView.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -159,11 +168,30 @@ class RegistationViewController: UIViewController {
             passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             passwordTextField.heightAnchor.constraint(equalToConstant: 50),
             
-            checkBoxEmailButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 6),
+            checkBoxEmailButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 10),
             checkBoxEmailButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             checkBoxEmailButton.widthAnchor.constraint(equalToConstant: 30),
             checkBoxEmailButton.heightAnchor.constraint(equalToConstant: 30),
             
+            emailText.topAnchor.constraint(equalTo: checkBoxEmailButton.topAnchor),
+            emailText.leadingAnchor.constraint(equalTo: checkBoxEmailButton.trailingAnchor, constant: 10),
+            emailText.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            emailText.heightAnchor.constraint(equalToConstant: 30),
+            
+            checkBoxTearmButton.topAnchor.constraint(equalTo: checkBoxEmailButton.bottomAnchor, constant: 10),
+            checkBoxTearmButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            checkBoxTearmButton.widthAnchor.constraint(equalToConstant: 30),
+            checkBoxTearmButton.heightAnchor.constraint(equalToConstant: 30),
+            
+            tearmsText.topAnchor.constraint(equalTo: checkBoxTearmButton.topAnchor),
+            tearmsText.leadingAnchor.constraint(equalTo: emailText.leadingAnchor),
+            tearmsText.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            tearmsText.heightAnchor.constraint(equalToConstant: 60),
+            
+            createButton.topAnchor.constraint(equalTo: tearmsText.bottomAnchor, constant: 40),
+            createButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            createButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            createButton.heightAnchor.constraint(equalToConstant: 50),
         ])
     }
     //MARK: Setup UI
@@ -204,7 +232,7 @@ class RegistationViewController: UIViewController {
     //MARK: Add Methods
     private func addMethods() {
         checkBoxEmailButton.addTarget(self, action: #selector(checkButtonTapped(sender:)), for: .touchUpInside)
-        checkBoxEmailButton.addTarget(self, action: #selector(checkButtonTapped(sender:)), for: .touchUpInside)
+        checkBoxTearmButton.addTarget(self, action: #selector(checkButtonTapped(sender:)), for: .touchUpInside)
         
     }
     @objc private func checkButtonTapped(sender: UIButton) {
@@ -219,10 +247,10 @@ class RegistationViewController: UIViewController {
         }
         } else if sender.tag == 1 {
             if checkboxTearmsCheck == false {
-                checkBoxEmailButton.setImage(image, for: .normal)
+                checkBoxTearmButton.setImage(image, for: .normal)
                 checkboxTearmsCheck = true
             } else {
-                checkBoxEmailButton.setImage(UIImage(), for: .normal)
+                checkBoxTearmButton.setImage(UIImage(), for: .normal)
                 checkboxTearmsCheck = false
             }
         }
