@@ -126,11 +126,6 @@ class RegisterViewController: UIViewController {
 }
 
     //MARK: Extention UITableView
-
-        
-    }
-}
-
 extension RegisterViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         info.count
