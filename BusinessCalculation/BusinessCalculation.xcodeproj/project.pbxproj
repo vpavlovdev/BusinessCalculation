@@ -8,13 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		CE356FE729BCA50800A5A0C4 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE356FE629BCA50800A5A0C4 /* AuthViewController.swift */; };
-		CE356FEA29BCA51B00A5A0C4 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE356FE929BCA51B00A5A0C4 /* RegisterViewController.swift */; };
 		CE356FED29BCA8BF00A5A0C4 /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE356FEC29BCA8BF00A5A0C4 /* UIColor + Extension.swift */; };
 		CE356FF329BCC35D00A5A0C4 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE356FF229BCC35D00A5A0C4 /* LoginModel.swift */; };
 		CE356FF929BCD28900A5A0C4 /* CustomButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE356FF829BCD28900A5A0C4 /* CustomButtons.swift */; };
 		CE35700F29BE000300A5A0C4 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE35700E29BE000300A5A0C4 /* CustomTextField.swift */; };
-		CE35702029BF0BF800A5A0C4 /* RegisterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE35701F29BF0BF800A5A0C4 /* RegisterTableViewCell.swift */; };
-		CE35702329BF0E9900A5A0C4 /* InfoForRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE35702229BF0E9900A5A0C4 /* InfoForRegister.swift */; };
 		CE35702829BF185900A5A0C4 /* LoginCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE35702729BF185900A5A0C4 /* LoginCollectionViewCell.swift */; };
 		CE35703229C3089E00A5A0C4 /* RegistationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE35703129C3089E00A5A0C4 /* RegistationViewController.swift */; };
 		CE35703929C4B0D900A5A0C4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE35703829C4B0D900A5A0C4 /* GoogleService-Info.plist */; };
@@ -35,13 +32,10 @@
 
 /* Begin PBXFileReference section */
 		CE356FE629BCA50800A5A0C4 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
-		CE356FE929BCA51B00A5A0C4 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		CE356FEC29BCA8BF00A5A0C4 /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
 		CE356FF229BCC35D00A5A0C4 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		CE356FF829BCD28900A5A0C4 /* CustomButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtons.swift; sourceTree = "<group>"; };
 		CE35700E29BE000300A5A0C4 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
-		CE35701F29BF0BF800A5A0C4 /* RegisterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTableViewCell.swift; sourceTree = "<group>"; };
-		CE35702229BF0E9900A5A0C4 /* InfoForRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoForRegister.swift; sourceTree = "<group>"; };
 		CE35702729BF185900A5A0C4 /* LoginCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCollectionViewCell.swift; sourceTree = "<group>"; };
 		CE35703129C3089E00A5A0C4 /* RegistationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistationViewController.swift; sourceTree = "<group>"; };
 		CE35703829C4B0D900A5A0C4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -113,9 +107,6 @@
 		CE35701D29BF062C00A5A0C4 /* Register */ = {
 			isa = PBXGroup;
 			children = (
-				CE356FE929BCA51B00A5A0C4 /* RegisterViewController.swift */,
-				CE35701F29BF0BF800A5A0C4 /* RegisterTableViewCell.swift */,
-				CE35702229BF0E9900A5A0C4 /* InfoForRegister.swift */,
 				CE35703129C3089E00A5A0C4 /* RegistationViewController.swift */,
 			);
 			path = Register;
@@ -264,12 +255,9 @@
 				CE35702829BF185900A5A0C4 /* LoginCollectionViewCell.swift in Sources */,
 				CE356FE729BCA50800A5A0C4 /* AuthViewController.swift in Sources */,
 				CE356FF329BCC35D00A5A0C4 /* LoginModel.swift in Sources */,
-				CE35702029BF0BF800A5A0C4 /* RegisterTableViewCell.swift in Sources */,
-				CE356FEA29BCA51B00A5A0C4 /* RegisterViewController.swift in Sources */,
 				CE356FF929BCD28900A5A0C4 /* CustomButtons.swift in Sources */,
 				CE67FB8829BB7E5500C21E2F /* LoginViewController.swift in Sources */,
 				CE67FB8429BB7E5500C21E2F /* AppDelegate.swift in Sources */,
-				CE35702329BF0E9900A5A0C4 /* InfoForRegister.swift in Sources */,
 				CE35704F29C5A90E00A5A0C4 /* ApiManager.swift in Sources */,
 				CE67FB8629BB7E5500C21E2F /* SceneDelegate.swift in Sources */,
 				CE356FED29BCA8BF00A5A0C4 /* UIColor + Extension.swift in Sources */,
