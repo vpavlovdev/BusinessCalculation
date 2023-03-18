@@ -7,7 +7,13 @@
 
 import UIKit
 import AuthenticationServices
+import FirebaseAuth
+import FirebaseFirestore
+import Firebase
+
 class RegistationViewController: UIViewController {
+    //User
+    private var newUser: User?
     //MARK: UIElements
     private let mainLabel: UILabel = {
         let label = UILabel()
@@ -38,7 +44,7 @@ class RegistationViewController: UIViewController {
         return button
     }()
     
-    //TextFields
+    //MARK: TextFields
     private let firstNameTextField: CustomTextField = {
         let textField = CustomTextField()
         textField.placeholder = "First name"
@@ -59,7 +65,7 @@ class RegistationViewController: UIViewController {
         textField.placeholder = "Password(8 or more characters)"
         return textField
     }()
-    //Checkbox
+    //MARK: Checkbox
     private var checkboxEmailCheck = false
     private var checkboxTearmsCheck = false
     private let checkBoxEmailButton: CustomButton = {
@@ -74,7 +80,7 @@ class RegistationViewController: UIViewController {
         button.tag = 1
         return button
     }()
-    //Text
+    //MARK: TearmAndPolicyText
     private let emailText: UITextView = {
         let label = UITextView()
         label.text = "I agree to send emails."
@@ -233,6 +239,7 @@ class RegistationViewController: UIViewController {
     private func addMethods() {
         checkBoxEmailButton.addTarget(self, action: #selector(checkButtonTapped(sender:)), for: .touchUpInside)
         checkBoxTearmButton.addTarget(self, action: #selector(checkButtonTapped(sender:)), for: .touchUpInside)
+        createButton.addTarget(self, action: #selector(registration(sender:)), for: .touchUpInside)
         
     }
     @objc private func checkButtonTapped(sender: UIButton) {
@@ -255,5 +262,10 @@ class RegistationViewController: UIViewController {
             }
         }
 }
-    
+    @objc private func registration(sender: CustomButton) {
+        print(#function)
+        let user = User(firstName: firstNameTextField.text!, lastName: lastNameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!)
+        print(user)
+        FirebaseAPIManager.shared.registrationNewUser(newUser: user)
+    }
 }

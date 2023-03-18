@@ -26,7 +26,7 @@ class FirebaseAPIManager {
     
     func registrationNewUser(newUser: User) {
         Auth.auth().createUser(withEmail: newUser.email, password: newUser.password) { (result, error) in
-            guard error == nil  else { return }
+            guard error == nil  else { print("this error "); return }
             let db = self.configureFB()
             db.collection("users").addDocument(
                 data: ["firstName" : newUser.firstName,
@@ -39,7 +39,7 @@ class FirebaseAPIManager {
         }
     }
     
-    func signInuser(email: String, password: String) {
+    func signInUser(email: String, password: String) {
         Auth.auth().signIn(withEmail: email, password: password) { (resutl, error) in
             guard error == nil else { return }
             print("We auth in app")
