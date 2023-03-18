@@ -7,6 +7,9 @@
 
 import UIKit
 import AuthenticationServices
+import FirebaseAuth
+import FirebaseFirestore
+import Firebase
 
 final class AuthViewController: UIViewController {
     //MARK: UIElements
@@ -52,6 +55,7 @@ final class AuthViewController: UIViewController {
         super.viewDidLoad()
         setupNavigationBar()
         setupUserInterface()
+        addMethods()
     }
     
     //MARK: Create SeparatorView
@@ -140,7 +144,14 @@ final class AuthViewController: UIViewController {
             separator.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 15),
         ])
     }
-    
+    //MARK: Add methods
+    private func addMethods() {
+        loginButton.addTarget(self, action: #selector(loginTapped(sender:)), for: .touchUpInside)
+    }
+    @objc private func loginTapped(sender: CustomButton) {
+        print(#function)
+        FirebaseAPIManager.shared.signInUser(email: loginNameTextField.text!, password: passworTextField.text!)
+    }
 }
 
 //MARK: Extention AuthViewContoller
