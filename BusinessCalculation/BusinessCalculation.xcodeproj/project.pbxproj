@@ -24,6 +24,7 @@
 		CE35704329C4B6DC00A5A0C4 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CE35704229C4B6DC00A5A0C4 /* FirebaseAuth */; };
 		CE35704829C4BEC900A5A0C4 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CE35704729C4BEC900A5A0C4 /* FirebaseFirestore */; };
 		CE35704A29C4BED300A5A0C4 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = CE35704929C4BED300A5A0C4 /* FirebaseDatabase */; };
+		CE35704F29C5A90E00A5A0C4 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE35704E29C5A90C00A5A0C4 /* ApiManager.swift */; };
 		CE67FB8429BB7E5500C21E2F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE67FB8329BB7E5500C21E2F /* AppDelegate.swift */; };
 		CE67FB8629BB7E5500C21E2F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE67FB8529BB7E5500C21E2F /* SceneDelegate.swift */; };
 		CE67FB8829BB7E5500C21E2F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE67FB8729BB7E5500C21E2F /* LoginViewController.swift */; };
@@ -43,6 +44,7 @@
 		CE35702729BF185900A5A0C4 /* LoginCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCollectionViewCell.swift; sourceTree = "<group>"; };
 		CE35703129C3089E00A5A0C4 /* RegistationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistationViewController.swift; sourceTree = "<group>"; };
 		CE35703829C4B0D900A5A0C4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CE35704E29C5A90C00A5A0C4 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		CE67FB8029BB7E5500C21E2F /* BusinessCalculation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BusinessCalculation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE67FB8329BB7E5500C21E2F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE67FB8529BB7E5500C21E2F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -124,6 +126,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CE35704C29C5A8BF00A5A0C4 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				CE35704D29C5A8DB00A5A0C4 /* Firebase */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		CE35704D29C5A8DB00A5A0C4 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				CE35704E29C5A90C00A5A0C4 /* ApiManager.swift */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
 		CE67FB7729BB7E5500C21E2F = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				CE356FD829BCA3AC00A5A0C4 /* Application */,
+				CE35704C29C5A8BF00A5A0C4 /* Service */,
 				CE356FE429BCA4ED00A5A0C4 /* LoginScreen */,
 				CE67FB8C29BB7E6000C21E2F /* Assets.xcassets */,
 				CE356FEC29BCA8BF00A5A0C4 /* UIColor + Extension.swift */,
@@ -248,6 +267,7 @@
 				CE67FB8829BB7E5500C21E2F /* LoginViewController.swift in Sources */,
 				CE67FB8429BB7E5500C21E2F /* AppDelegate.swift in Sources */,
 				CE35702329BF0E9900A5A0C4 /* InfoForRegister.swift in Sources */,
+				CE35704F29C5A90E00A5A0C4 /* ApiManager.swift in Sources */,
 				CE67FB8629BB7E5500C21E2F /* SceneDelegate.swift in Sources */,
 				CE356FED29BCA8BF00A5A0C4 /* UIColor + Extension.swift in Sources */,
 				CE35700F29BE000300A5A0C4 /* CustomTextField.swift in Sources */,
