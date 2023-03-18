@@ -25,6 +25,7 @@
 		CE35704829C4BEC900A5A0C4 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CE35704729C4BEC900A5A0C4 /* FirebaseFirestore */; };
 		CE35704A29C4BED300A5A0C4 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = CE35704929C4BED300A5A0C4 /* FirebaseDatabase */; };
 		CE35704F29C5A90E00A5A0C4 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE35704E29C5A90C00A5A0C4 /* ApiManager.swift */; };
+		CE35705229C5E84200A5A0C4 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE35705129C5E84100A5A0C4 /* UserModel.swift */; };
 		CE67FB8429BB7E5500C21E2F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE67FB8329BB7E5500C21E2F /* AppDelegate.swift */; };
 		CE67FB8629BB7E5500C21E2F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE67FB8529BB7E5500C21E2F /* SceneDelegate.swift */; };
 		CE67FB8829BB7E5500C21E2F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE67FB8729BB7E5500C21E2F /* LoginViewController.swift */; };
@@ -45,6 +46,7 @@
 		CE35703129C3089E00A5A0C4 /* RegistationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistationViewController.swift; sourceTree = "<group>"; };
 		CE35703829C4B0D900A5A0C4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CE35704E29C5A90C00A5A0C4 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
+		CE35705129C5E84100A5A0C4 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		CE67FB8029BB7E5500C21E2F /* BusinessCalculation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BusinessCalculation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE67FB8329BB7E5500C21E2F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE67FB8529BB7E5500C21E2F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				CE35704E29C5A90C00A5A0C4 /* ApiManager.swift */,
+				CE35705129C5E84100A5A0C4 /* UserModel.swift */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 				CE35704F29C5A90E00A5A0C4 /* ApiManager.swift in Sources */,
 				CE67FB8629BB7E5500C21E2F /* SceneDelegate.swift in Sources */,
 				CE356FED29BCA8BF00A5A0C4 /* UIColor + Extension.swift in Sources */,
+				CE35705229C5E84200A5A0C4 /* UserModel.swift in Sources */,
 				CE35700F29BE000300A5A0C4 /* CustomTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
