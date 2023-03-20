@@ -52,6 +52,12 @@ enum CustomButtonType {
         default: return 1
         }
     }
+    var imageName: String {
+        switch self {
+        case .google: return "google"
+        default: return ""
+        }
+    }
     var font: UIFont {
         switch self {
         case .registration: return .italicSystemFont(ofSize: 20)
@@ -78,6 +84,12 @@ final class CustomButton: UIButton {
         layer.borderWidth = type.borderWidth
         layer.borderColor = type.borderColor
         titleLabel?.font = type.font
+        guard type == .google else { return }
+        setImage(UIImage(named: type.imageName), for: .normal)
+        imageView?.contentMode = .scaleAspectFit
+        self.imageRect(forContentRect: .init(x: 2, y: 0, width: 50, height: 50))
+        
+        
     }
     func checkConfigure() {
         setBackgroundImage(UIImage(), for: .normal)
