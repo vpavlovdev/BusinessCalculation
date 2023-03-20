@@ -49,5 +49,9 @@ class FirebaseAPIManager {
             print("We auth in app")
         }
     }
+    func signInGoogle() {
+        
+        
+    }
 }
 
