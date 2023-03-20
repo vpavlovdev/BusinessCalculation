@@ -11,6 +11,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import Firebase
 import GoogleSignIn
+import GoogleSignInSwift
 
 final class AuthViewController: UIViewController {
     //MARK: UIElements
@@ -40,9 +41,10 @@ final class AuthViewController: UIViewController {
         button.configure(type: .login)
         return button
     }()
-    private let googleButton: CustomButton = {
-        let button = CustomButton()
-        button.configure(type: .google)
+    private let googleButton: GIDSignInButton = {
+        let button = GIDSignInButton()
+        button.style = .standard
+        button.layer.cornerRadius = 15
         return button
     }()
     private let appleButton: ASAuthorizationAppleIDButton = {
