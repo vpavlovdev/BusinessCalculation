@@ -43,7 +43,7 @@ final class AuthViewController: UIViewController {
     }()
     private let googleButton: GIDSignInButton = {
         let button = GIDSignInButton()
-        button.style = .standard
+        button.style = .wide
         button.layer.cornerRadius = 15
         return button
     }()
