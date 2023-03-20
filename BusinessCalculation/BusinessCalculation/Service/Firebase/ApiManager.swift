@@ -25,6 +25,7 @@ class FirebaseAPIManager {
     }
     
     func registrationNewUser(newUser: User) {
+        DispatchQueue.main.async {
         Auth.auth().createUser(withEmail: newUser.email, password: newUser.password) { (result, error) in
             guard error == nil  else { print("this error "); return }
             let db = self.configureFB()
@@ -37,6 +38,7 @@ class FirebaseAPIManager {
             }
             print("Registration compleate")
         }
+    }
     }
     
     func signInUser(email: String, password: String) {
