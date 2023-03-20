@@ -10,6 +10,8 @@ import UIKit
 import FirebaseAuth
 import Firebase
 import FirebaseDatabaseSwift
+import GoogleSignIn
+import GoogleSignInSwift
 
 class FirebaseAPIManager {
     static let shared = FirebaseAPIManager()
