@@ -10,6 +10,7 @@ import AuthenticationServices
 import FirebaseAuth
 import FirebaseFirestore
 import Firebase
+import GoogleSignIn
 
 final class AuthViewController: UIViewController {
     //MARK: UIElements
