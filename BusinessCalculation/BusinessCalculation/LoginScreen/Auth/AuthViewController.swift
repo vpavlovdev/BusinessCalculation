@@ -48,7 +48,7 @@ final class AuthViewController: UIViewController {
         return button
     }()
     private let appleButton: ASAuthorizationAppleIDButton = {
-        let button = ASAuthorizationAppleIDButton(authorizationButtonType: .continue, authorizationButtonStyle: .black)
+        let button = ASAuthorizationAppleIDButton(authorizationButtonType: .signIn, authorizationButtonStyle: .black)
         button.cornerRadius = 15
         return button
     }()
@@ -150,10 +150,15 @@ final class AuthViewController: UIViewController {
     //MARK: Add methods
     private func addMethods() {
         loginButton.addTarget(self, action: #selector(loginTapped(sender:)), for: .touchUpInside)
+        googleButton.addTarget(self, action: #selector(googleTapped), for: .touchUpInside)
     }
     @objc private func loginTapped(sender: CustomButton) {
         print(#function)
         FirebaseAPIManager.shared.signInUser(email: loginNameTextField.text!, password: passworTextField.text!)
+    }
+    @objc private func googleTapped() {
+        print(#function)
+        FirebaseAPIManager.shared.signInGoogle()
     }
 }
 
