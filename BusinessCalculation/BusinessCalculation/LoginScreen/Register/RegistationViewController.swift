@@ -22,9 +22,9 @@ class RegistationViewController: UIViewController {
         label.font = .boldSystemFont(ofSize: 22)
         return label
     }()
-    private let googleButton: CustomButton = {
-        let button = CustomButton()
-        button.configure(type: .google)
+    private let googleButton: GoogleButton = {
+        let button = GoogleButton()
+        //button.configure(type: .google)
         return button
     }()
     private let appleButton: ASAuthorizationAppleIDButton = {
