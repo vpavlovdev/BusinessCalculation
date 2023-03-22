@@ -26,7 +26,7 @@ enum CustomButtonType {
     var textColor: UIColor {
         switch self {
         case .login: return .white
-        case .registration: return .blue
+        case .registration: return #colorLiteral(red: 0.1057885811, green: 0.09331270307, blue: 0.6688950658, alpha: 1)
         case .google: return .white
         case .apple: return .black
         case .createButton: return .white
@@ -60,7 +60,8 @@ enum CustomButtonType {
     }
     var font: UIFont {
         switch self {
-        case .registration: return .italicSystemFont(ofSize: 20)
+        case .registration: return .italicSystemFont(ofSize: 22)
+        case .google: return .boldSystemFont(ofSize: 19)
         default: return .boldSystemFont(ofSize: 22)
         }
     }
@@ -68,9 +69,7 @@ enum CustomButtonType {
 
 final class CustomButton: UIButton {
     var type: CustomButtonType?
-    var selector: Selector?
-    
-    
+   
     override init(frame: CGRect) {
         super.init(frame: .zero)
     }
@@ -84,17 +83,21 @@ final class CustomButton: UIButton {
         layer.borderWidth = type.borderWidth
         layer.borderColor = type.borderColor
         titleLabel?.font = type.font
-        guard type == .google else { return }
-        setImage(UIImage(named: type.imageName), for: .normal)
-        imageView?.contentMode = .scaleAspectFit
-        self.imageRect(forContentRect: .init(x: 2, y: 0, width: 50, height: 50))
-        
-        
+        addTarget(self, action: #selector(tapped), for: .touchUpInside)
     }
     func checkConfigure() {
         setBackgroundImage(UIImage(), for: .normal)
         layer.cornerRadius = 10
         layer.borderWidth = 2
         layer.borderColor = UIColor.gray.cgColor
+    }
+    @objc private func tapped() {
+        guard let title = titleLabel else { return }
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn) {
+            title.alpha = 0.6
+        } completion: { _ in
+            title.alpha = 1
+        }
+
     }
 }

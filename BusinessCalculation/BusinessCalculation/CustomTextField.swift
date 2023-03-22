@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomTextField: UITextField {
+final class CustomTextField: UITextField {
     private var secureText = true
     
     override init(frame: CGRect) {
@@ -70,13 +70,13 @@ class CustomTextField: UITextField {
     }
     
     override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
-        .init(x: 35, y: 0, width: bounds.width, height: bounds.height)
+        .init(x: 30, y: 0, width: bounds.width, height: bounds.height)
     }
     override func editingRect(forBounds bounds: CGRect) -> CGRect {
-        .init(x: 35, y: 0, width: bounds.width, height: bounds.height)
+        .init(x: 30, y: 0, width: bounds.width, height: bounds.height)
     }
     override func textRect(forBounds bounds: CGRect) -> CGRect {
-        .init(x: 35, y: 0, width: bounds.width, height: bounds.height)
+        .init(x: 30, y: 0, width: bounds.width, height: bounds.height)
     }
   
     
