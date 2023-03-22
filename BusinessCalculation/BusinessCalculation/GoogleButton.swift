@@ -47,20 +47,19 @@ final class GoogleButton: UIButton {
             googleImage.widthAnchor.constraint(equalToConstant: 45),
             googleImage.heightAnchor.constraint(equalToConstant: 45),
             
-            label.widthAnchor.constraint(equalToConstant: 180),
+            label.widthAnchor.constraint(equalToConstant: 190),
             label.centerYAnchor.constraint(equalTo: centerYAnchor),
             label.centerXAnchor.constraint(equalTo: centerXAnchor),
             label.heightAnchor.constraint(equalToConstant: 25),
         ])
     }
-    @objc private func tapped() {
-        UIView.animate(withDuration: 0.1, delay: 0.1, options: .curveEaseIn) {
-            self.alpha = 0.7
+    @objc private func tapped(sender: UIButton) {
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn) {
+            self.label.alpha = 0.6
+            self.googleImage.alpha = 0.6
         } completion: { _ in
-            self.alpha = 1
+            self.label.alpha = 1
+            self.googleImage.alpha = 1
         }
-
     }
-    
-    
 }

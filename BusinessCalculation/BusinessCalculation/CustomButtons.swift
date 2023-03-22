@@ -61,7 +61,7 @@ enum CustomButtonType {
     var font: UIFont {
         switch self {
         case .registration: return .italicSystemFont(ofSize: 22)
-        case .google: return .boldSystemFont(ofSize: 18)
+        case .google: return .boldSystemFont(ofSize: 19)
         default: return .boldSystemFont(ofSize: 22)
         }
     }
@@ -83,11 +83,21 @@ final class CustomButton: UIButton {
         layer.borderWidth = type.borderWidth
         layer.borderColor = type.borderColor
         titleLabel?.font = type.font
+        addTarget(self, action: #selector(tapped), for: .touchUpInside)
     }
     func checkConfigure() {
         setBackgroundImage(UIImage(), for: .normal)
         layer.cornerRadius = 10
         layer.borderWidth = 2
         layer.borderColor = UIColor.gray.cgColor
+    }
+    @objc private func tapped() {
+        guard let title = titleLabel else { return }
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn) {
+            title.alpha = 0.6
+        } completion: { _ in
+            title.alpha = 1
+        }
+
     }
 }

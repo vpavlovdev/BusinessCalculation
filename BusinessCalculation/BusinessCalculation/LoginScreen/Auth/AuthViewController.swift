@@ -41,14 +41,12 @@ final class AuthViewController: UIViewController {
         button.configure(type: .login)
         return button
     }()
-    private let googleButton: GIDSignInButton = {
-        let button = GIDSignInButton()
-        button.style = .wide
-        button.layer.cornerRadius = 15
+    private let googleButton: GoogleButton = {
+        let button = GoogleButton()
         return button
     }()
     private let appleButton: ASAuthorizationAppleIDButton = {
-        let button = ASAuthorizationAppleIDButton(authorizationButtonType: .signIn, authorizationButtonStyle: .black)
+        let button = ASAuthorizationAppleIDButton(authorizationButtonType: .continue, authorizationButtonStyle: .black)
         button.cornerRadius = 15
         return button
     }()
@@ -117,22 +115,22 @@ final class AuthViewController: UIViewController {
             mainLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             mainLabel.heightAnchor.constraint(equalToConstant: 30),
             
-            loginNameTextField.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: 20),
-            loginNameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            loginNameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            loginNameTextField.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: 30),
+            loginNameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            loginNameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             loginNameTextField.heightAnchor.constraint(equalToConstant: 50),
             
-            passworTextField.topAnchor.constraint(equalTo: loginNameTextField.bottomAnchor, constant: 6),
-            passworTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            passworTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            passworTextField.topAnchor.constraint(equalTo: loginNameTextField.bottomAnchor, constant: 10),
+            passworTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            passworTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             passworTextField.heightAnchor.constraint(equalToConstant: 50),
             
-            loginButton.topAnchor.constraint(equalTo: passworTextField.bottomAnchor, constant: 10),
+            loginButton.topAnchor.constraint(equalTo: passworTextField.bottomAnchor, constant: 15),
             loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             loginButton.heightAnchor.constraint(equalToConstant: 50),
             
-            googleButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 50),
+            googleButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 60),
             googleButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             googleButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             googleButton.heightAnchor.constraint(equalToConstant: 50),
@@ -144,7 +142,7 @@ final class AuthViewController: UIViewController {
             
             separator.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             separator.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            separator.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 15),
+            separator.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 20),
         ])
     }
     //MARK: Add methods
