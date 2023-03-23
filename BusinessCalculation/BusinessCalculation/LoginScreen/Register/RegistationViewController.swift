@@ -11,7 +11,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import Firebase
 
-class RegistationViewController: UIViewController {
+final class RegistationViewController: UIViewController {
     //User
     private var newUser: User?
     //MARK: UIElements
@@ -109,6 +109,7 @@ class RegistationViewController: UIViewController {
         setupUserInterface()
         setupScrollView()
         addMethods()
+        keyboardNotification()
     }
     
     private func setupNavigationBar() {
@@ -249,6 +250,11 @@ class RegistationViewController: UIViewController {
         createButton.addTarget(self, action: #selector(registration(sender:)), for: .touchUpInside)
         googleButton.addTarget(self, action: #selector(signInWithGoogle), for: .touchUpInside)
     }
+    private func keyboardNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    //MARK: Methods
     @objc private func checkButtonTapped(sender: UIButton) {
         guard let image = UIImage(named: "check") else { return }
         if sender.tag == 0 {
@@ -277,6 +283,19 @@ class RegistationViewController: UIViewController {
     }
     @objc private func signInWithGoogle() {
         FirebaseAPIManager.shared.signInGoogle()
+    }
+    //MARK: Keyboard Methods
+    @objc func keyboardShow(notification: NSNotification) {
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+        let contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
+        scrollView.contentInset = contentInset
+        scrollView.scrollIndicatorInsets = contentInset
+    
+}
+    @objc func keyboardHide(notification: NSNotification) {
+        let contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        scrollView.contentInset = contentInset
+        scrollView.scrollIndicatorInsets = contentInset
     }
 }
 
