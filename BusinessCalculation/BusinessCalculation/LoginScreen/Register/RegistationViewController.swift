@@ -243,6 +243,16 @@ final class RegistationViewController: UIViewController {
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
+    private func setupAlert() {
+        let alertViewControlelr = UIAlertController(title: "Dear user",
+                                                    message: "You need agree to the Tearms of Service, including the Privacy Policy. to continue working.",
+                                                    preferredStyle: .alert)
+        let action = UIAlertAction(title: "Ok", style: .cancel) { (action) in
+            
+        }
+        alertViewControlelr.addAction(action)
+        self.present(alertViewControlelr, animated: true)
+    }
     //MARK: Add Methods
     private func addMethods() {
         checkBoxEmailButton.addTarget(self, action: #selector(checkButtonTapped(sender:)), for: .touchUpInside)
@@ -277,6 +287,10 @@ final class RegistationViewController: UIViewController {
 }
     @objc private func registration(sender: CustomButton) {
         print(#function)
+        guard checkboxTearmsCheck == true else {
+           setupAlert()
+            return
+        }
         let user = User(firstName: firstNameTextField.text!, lastName: lastNameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!)
         print(user)
         FirebaseAPIManager.shared.registrationNewUser(newUser: user)
