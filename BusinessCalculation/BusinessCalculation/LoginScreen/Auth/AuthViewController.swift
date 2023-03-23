@@ -57,6 +57,7 @@ final class AuthViewController: UIViewController {
         setupNavigationBar()
         setupUserInterface()
         addMethods()
+        test()
     }
     
     //MARK: Create SeparatorView
@@ -157,6 +158,16 @@ final class AuthViewController: UIViewController {
     @objc private func googleTapped() {
         print(#function)
         FirebaseAPIManager.shared.signInGoogle()
+    }
+    //FIXME: HideKeyboard when tapped rightView
+    func test() {
+        passworTextField.isUserInteractionEnabled = true
+        //passworTextField.isMultipleTouchEnabled = true
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboar))
+        passworTextField.rightView?.addGestureRecognizer(gesture)
+    }
+    @objc func hideKeyboar() {
+        passworTextField.resignFirstResponder()
     }
 }
 

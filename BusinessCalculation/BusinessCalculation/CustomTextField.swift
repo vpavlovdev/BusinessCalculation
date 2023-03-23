@@ -17,6 +17,7 @@ final class CustomTextField: UITextField {
     
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
+    //MARK: Settings
     func setupSettings() {
         layer.cornerRadius = 10
         layer.borderWidth = 2
@@ -24,6 +25,7 @@ final class CustomTextField: UITextField {
         clearButtonMode = .whileEditing
         textColor = .black
     }
+    //MARK: PersonLeftImage
     func setupPersonImageLeftView() {
         guard let personImage = UIImage(systemName: "person.fill") else { return }
         let view = UIView(frame: CGRect(x: 0, y: 0, width: personImage.size.width, height: personImage.size.height))
@@ -36,6 +38,7 @@ final class CustomTextField: UITextField {
         leftViewMode = .always
         addSubview(view)
     }
+    //MARK: EyeRightImage
     func setupEyeImageLeftView() {
         guard let eyeImage = UIImage(systemName: "eye") else { return }
         let view = UIView(frame: CGRect(x: 0, y: 0, width: eyeImage.size.width, height: eyeImage.size.height))
