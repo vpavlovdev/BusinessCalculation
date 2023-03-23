@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Content {
+final class Content {
     let title: String
     let imageName: String
     let description: String

@@ -31,7 +31,7 @@ final class AuthViewController: UIViewController {
     }()
     private let passworTextField: CustomTextField = {
         let textField = CustomTextField()
-        textField.setupEyeImageLeftView()
+        textField.setupSecureButton()
         textField.tag = 1
         textField.placeholder = "Entry your password"
         return textField
@@ -157,6 +157,10 @@ final class AuthViewController: UIViewController {
     @objc private func googleTapped() {
         print(#function)
         FirebaseAPIManager.shared.signInGoogle()
+    }
+    
+    @objc func hideKeyboar() {
+        passworTextField.resignFirstResponder()
     }
 }
 
