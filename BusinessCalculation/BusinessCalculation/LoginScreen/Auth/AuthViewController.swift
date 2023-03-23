@@ -31,7 +31,7 @@ final class AuthViewController: UIViewController {
     }()
     private let passworTextField: CustomTextField = {
         let textField = CustomTextField()
-        textField.setupEyeImageLeftView()
+        textField.setupSecureButton()
         textField.tag = 1
         textField.placeholder = "Entry your password"
         return textField
@@ -57,7 +57,6 @@ final class AuthViewController: UIViewController {
         setupNavigationBar()
         setupUserInterface()
         addMethods()
-        test()
     }
     
     //MARK: Create SeparatorView
@@ -159,13 +158,7 @@ final class AuthViewController: UIViewController {
         print(#function)
         FirebaseAPIManager.shared.signInGoogle()
     }
-    //FIXME: HideKeyboard when tapped rightView
-    func test() {
-        passworTextField.isUserInteractionEnabled = true
-        //passworTextField.isMultipleTouchEnabled = true
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboar))
-        passworTextField.rightView?.addGestureRecognizer(gesture)
-    }
+    
     @objc func hideKeyboar() {
         passworTextField.resignFirstResponder()
     }
