@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CE27CD2B29CB1D8E00974EB7 /* GoogleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE27CD2A29CB1D8E00974EB7 /* GoogleButton.swift */; };
+		CE27CD3529CE0D2800974EB7 /* MainScreenTabBarContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE27CD3429CE0D2800974EB7 /* MainScreenTabBarContoller.swift */; };
 		CE356FE729BCA50800A5A0C4 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE356FE629BCA50800A5A0C4 /* AuthViewController.swift */; };
 		CE356FED29BCA8BF00A5A0C4 /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE356FEC29BCA8BF00A5A0C4 /* UIColor + Extension.swift */; };
 		CE356FF329BCC35D00A5A0C4 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE356FF229BCC35D00A5A0C4 /* LoginModel.swift */; };
@@ -35,6 +36,7 @@
 
 /* Begin PBXFileReference section */
 		CE27CD2A29CB1D8E00974EB7 /* GoogleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleButton.swift; sourceTree = "<group>"; };
+		CE27CD3429CE0D2800974EB7 /* MainScreenTabBarContoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenTabBarContoller.swift; sourceTree = "<group>"; };
 		CE356FE629BCA50800A5A0C4 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		CE356FEC29BCA8BF00A5A0C4 /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
 		CE356FF229BCC35D00A5A0C4 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
@@ -73,6 +75,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE27CD3229CE09CD00974EB7 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				CE356FE429BCA4ED00A5A0C4 /* LoginScreen */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		CE27CD3329CE09DC00974EB7 /* MainScreen */ = {
+			isa = PBXGroup;
+			children = (
+				CE27CD3429CE0D2800974EB7 /* MainScreenTabBarContoller.swift */,
+			);
+			path = MainScreen;
+			sourceTree = "<group>";
+		};
 		CE356FD829BCA3AC00A5A0C4 /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,7 +182,8 @@
 			children = (
 				CE356FD829BCA3AC00A5A0C4 /* Application */,
 				CE35704C29C5A8BF00A5A0C4 /* Service */,
-				CE356FE429BCA4ED00A5A0C4 /* LoginScreen */,
+				CE27CD3229CE09CD00974EB7 /* Modules */,
+				CE27CD3329CE09DC00974EB7 /* MainScreen */,
 				CE67FB8C29BB7E6000C21E2F /* Assets.xcassets */,
 				CE356FEC29BCA8BF00A5A0C4 /* UIColor + Extension.swift */,
 				CE356FF829BCD28900A5A0C4 /* CustomButtons.swift */,
@@ -268,6 +287,7 @@
 				CE356FF929BCD28900A5A0C4 /* CustomButtons.swift in Sources */,
 				CE27CD2B29CB1D8E00974EB7 /* GoogleButton.swift in Sources */,
 				CE67FB8829BB7E5500C21E2F /* LoginViewController.swift in Sources */,
+				CE27CD3529CE0D2800974EB7 /* MainScreenTabBarContoller.swift in Sources */,
 				CE67FB8429BB7E5500C21E2F /* AppDelegate.swift in Sources */,
 				CE35704F29C5A90E00A5A0C4 /* ApiManager.swift in Sources */,
 				CE67FB8629BB7E5500C21E2F /* SceneDelegate.swift in Sources */,
