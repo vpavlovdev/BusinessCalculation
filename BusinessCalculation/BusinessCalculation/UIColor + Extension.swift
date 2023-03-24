@@ -17,6 +17,9 @@ extension UIColor {
     static var tintPageControl: UIColor  {
         #colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 1)
     }
+    static var registrationTextColor: UIColor {
+        #colorLiteral(red: 0.1057885811, green: 0.09331270307, blue: 0.6688950658, alpha: 1)
+    }
     static var tintColorNavContoller: UIColor {
         #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
     }

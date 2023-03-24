@@ -8,16 +8,23 @@
 import UIKit
 
 class MainScreenTabBarContoller: UITabBarController {
-
+  
+    //MARK: LifeCicle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
+        generateTabBarController()
+        setupTabBarAppearance()
     }
+    
+    //MARK: Generate TabBar
     private func generateTabBarController() {
         viewControllers = [
-        
-        
+        generateViewControllers(viewContoller: BusinessPlansViewController(),
+                                title: "Бизнес планы",
+                                image: UIImage(systemName: "folder.fill")),
+        generateViewControllers(viewContoller: ProfileViewController(),
+                                title: "Профиль",
+                                image: UIImage(systemName: "person.fill"))
         ]
     }
     private func generateViewControllers(viewContoller: UIViewController, title: String, image: UIImage?) -> UIViewController {
@@ -38,6 +45,7 @@ class MainScreenTabBarContoller: UITabBarController {
         roundLayer.path = bezierPath.cgPath
         tabBar.layer.insertSublayer(roundLayer, at: 0)
         tabBar.itemPositioning = .centered
+        tabBar.itemWidth = width / 4
         
         //MARK: TabBar Colors
         roundLayer.fillColor = UIColor.tabBarColor.cgColor
