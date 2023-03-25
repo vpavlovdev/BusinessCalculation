@@ -10,51 +10,66 @@ import UIKit
 enum CustomButtonType {
     case login
     case registration
+    case google
+    case apple
+    case createButton
     
     var title: String {
         switch self {
         case .login: return "Log In"
         case .registration: return "New to BusiCal? Sign Up"
+        case .google: return "Continue with Google"
+        case .apple: return "Continue with Apple"
+        case .createButton: return "Create my account"
         }
     }
     var textColor: UIColor {
         switch self {
         case .login: return .white
-        case .registration: return .black
+        case .registration: return #colorLiteral(red: 0.1057885811, green: 0.09331270307, blue: 0.6688950658, alpha: 1)
+        case .google: return .white
+        case .apple: return .black
+        case .createButton: return .white
         }
     }
     var backgroundColor: UIColor {
         switch self {
         case .registration: return .clear
-        default: return .green
+        default: return .currentPageControl
         }
     }
     var borderColor: CGColor {
         switch self {
-        case .registration: return UIColor.black.cgColor //need clear 
+        case .registration: return UIColor.clear.cgColor //need clear
         default: return UIColor.black.cgColor
         }
     }
     
     var borderWidth: CGFloat {
         switch self {
-        case .registration: return 1 // need 0
+        case .registration: return 0 // need 0
+        case .login: return 0
         default: return 1
+        }
+    }
+    var imageName: String {
+        switch self {
+        case .google: return "google"
+        default: return ""
         }
     }
     var font: UIFont {
         switch self {
-        case .registration: return .italicSystemFont(ofSize: 20)
-        default: return .systemFont(ofSize: 20)
+        case .registration: return .italicSystemFont(ofSize: 22)
+        case .google: return .boldSystemFont(ofSize: 19)
+        default: return .boldSystemFont(ofSize: 22)
         }
     }
 }
 
 final class CustomButton: UIButton {
     var type: CustomButtonType?
-    var selector: Selector?
-    
-    
+   
     override init(frame: CGRect) {
         super.init(frame: .zero)
     }
@@ -68,5 +83,21 @@ final class CustomButton: UIButton {
         layer.borderWidth = type.borderWidth
         layer.borderColor = type.borderColor
         titleLabel?.font = type.font
+        addTarget(self, action: #selector(tapped), for: .touchUpInside)
+    }
+    func checkConfigure() {
+        setBackgroundImage(UIImage(), for: .normal)
+        layer.cornerRadius = 10
+        layer.borderWidth = 2
+        layer.borderColor = UIColor.gray.cgColor
+    }
+    @objc private func tapped() {
+        guard let title = titleLabel else { return }
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn) {
+            title.alpha = 0.6
+        } completion: { _ in
+            title.alpha = 1
+        }
+
     }
 }
