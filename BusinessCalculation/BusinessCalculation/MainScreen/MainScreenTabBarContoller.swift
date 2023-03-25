@@ -49,13 +49,15 @@ class MainScreenTabBarContoller: UITabBarController {
         
         //MARK: TabBar Colors
         roundLayer.fillColor = UIColor.tabBarColor.cgColor
-        tabBar.tintColor = .selectedTabBarItem
         tabBar.unselectedItemTintColor = .unselectedTabBarItem
+        tabBar.tintColor = .selectedTabBarItem
+        
         
         //MARK: Clear background
-        let appearance = UITabBarAppearance()
-        appearance.configureWithTransparentBackground()
-        tabBar.standardAppearance = appearance
+        tabBar.backgroundColor = .clear
+        tabBar.backgroundImage = UIImage()
+        tabBar.shadowImage = UIImage()
+        
     }
 
 }
