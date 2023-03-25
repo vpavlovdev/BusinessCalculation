@@ -17,4 +17,19 @@ extension UIColor {
     static var tintPageControl: UIColor  {
         #colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 1)
     }
+    static var registrationTextColor: UIColor {
+        #colorLiteral(red: 0.1057885811, green: 0.09331270307, blue: 0.6688950658, alpha: 1)
+    }
+    static var tintColorNavContoller: UIColor {
+        #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+    }
+    static var tabBarColor: UIColor {
+        #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+    }
+    static var selectedTabBarItem: UIColor {
+        #colorLiteral(red: 0.09537834674, green: 0.5528693199, blue: 0.09760322422, alpha: 1)
+    }
+    static var unselectedTabBarItem: UIColor {
+        #colorLiteral(red: 0.09537834674, green: 0.5528693199, blue: 0.09760322422, alpha: 0.5)
+    }
 }

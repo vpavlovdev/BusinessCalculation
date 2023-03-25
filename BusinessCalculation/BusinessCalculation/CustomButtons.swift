@@ -26,7 +26,7 @@ enum CustomButtonType {
     var textColor: UIColor {
         switch self {
         case .login: return .white
-        case .registration: return #colorLiteral(red: 0.1057885811, green: 0.09331270307, blue: 0.6688950658, alpha: 1)
+        case .registration: return .registrationTextColor
         case .google: return .white
         case .apple: return .black
         case .createButton: return .white

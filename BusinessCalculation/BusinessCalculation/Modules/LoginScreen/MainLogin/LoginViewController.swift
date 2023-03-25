@@ -45,7 +45,7 @@ final class LoginViewController: UIViewController {
         appearance.configureWithTransparentBackground()
         navigationController?.navigationBar.standardAppearance = appearance
         navigationItem.backButtonTitle = ""
-        navigationController?.navigationBar.tintColor = .black
+        navigationController?.navigationBar.tintColor = .tintColorNavContoller
         
         navigationItem.title = "Business calculation"
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -110,7 +110,6 @@ final class LoginViewController: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     @objc private func signUpButtonTapped(sender: CustomButton) {
-        //let vc = RegisterViewController()
         let vc = RegistationViewController()
         navigationController?.pushViewController(vc, animated: true)
     }

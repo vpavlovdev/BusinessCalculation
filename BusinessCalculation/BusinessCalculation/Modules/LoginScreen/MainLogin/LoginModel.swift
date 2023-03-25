@@ -7,16 +7,11 @@
 
 import Foundation
 
-final class Content {
+struct Content {
     let title: String
     let imageName: String
     let description: String
     
-    init(title: String, imageName: String, description: String) {
-        self.title = title
-        self.imageName = imageName
-        self.description = description
-    }
 }
 
 struct Source {
