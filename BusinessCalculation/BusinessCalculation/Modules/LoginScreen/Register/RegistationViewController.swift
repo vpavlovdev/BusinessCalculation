@@ -34,7 +34,7 @@ final class RegistationViewController: UIViewController {
     private lazy var scrollView: UIScrollView = {
         let scroll = UIScrollView()
         scroll.showsHorizontalScrollIndicator = false
-        //scroll.contentSize = .init(width: 450, height: 700)
+        scroll.contentSize = .init(width: view.frame.size.width, height: view.frame.size.height)
         return scroll
     }()
     private lazy var separator = createSeparator()
@@ -302,22 +302,16 @@ final class RegistationViewController: UIViewController {
     //MARK: Keyboard Methods
     @objc func keyboardShow(notification: NSNotification) {
         guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
-        let contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
+        let contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
         scrollView.contentInset = contentInset
         scrollView.scrollIndicatorInsets = contentInset
-//        let contentOffset = CGPoint(x: 0, y: keyboardSize.height / 2)
-//        scrollView.contentOffset = contentOffset
-//        scrollView.setContentOffset(contentOffset, animated: true)
-        
-    
 }
     @objc func keyboardHide(notification: NSNotification) {
-        let contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        let contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
+        scrollView.contentOffset = .zero
         scrollView.contentInset = contentInset
         scrollView.scrollIndicatorInsets = contentInset
-//        let contentOffset = CGPoint(x: 0, y: 0)
-//        scrollView.contentOffset = contentOffset
-//        scrollView.setContentOffset(contentOffset, animated: true)
+        
     }
 }
 
