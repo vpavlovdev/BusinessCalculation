@@ -31,12 +31,13 @@ final class RegistationViewController: UIViewController {
         button.cornerRadius = 15
         return button
     }()
-    private let scrollView: UIScrollView = {
+    private lazy var scrollView: UIScrollView = {
         let scroll = UIScrollView()
         scroll.showsHorizontalScrollIndicator = false
-        scroll.contentSize = .init(width: 450, height: 500)
+        //scroll.contentSize = .init(width: 450, height: 700)
         return scroll
     }()
+    private lazy var separator = createSeparator()
     private let createButton: CustomButton = {
         let button = CustomButton()
         button.configure(type: .createButton)
@@ -151,18 +152,52 @@ final class RegistationViewController: UIViewController {
         ])
         return separatorView
     }
+    //MARK: Setup UI
+    private func setupUserInterface() {
+        view.backgroundColor = .mainWhite
+        [scrollView].forEach {
+            view.addSubview($0)
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
+    }
     //MARK: Setup UIScrollView
     private func setupScrollView() {
         firstNameTextField.delegate = self
         lastNameTextField.delegate = self
         emailTextField.delegate = self
         passwordTextField.delegate = self
-        [firstNameTextField, lastNameTextField, emailTextField, passwordTextField, checkBoxEmailButton, emailText, checkBoxTearmButton, tearmsText, createButton].forEach {
+        
+        [mainLabel, googleButton, appleButton, separator, firstNameTextField, lastNameTextField, emailTextField, passwordTextField, checkBoxEmailButton, emailText, checkBoxTearmButton, tearmsText, createButton].forEach {
             scrollView.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
         NSLayoutConstraint.activate([
-            firstNameTextField.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            mainLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20),
+            mainLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            mainLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            mainLabel.heightAnchor.constraint(equalToConstant: 30),
+            
+            googleButton.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: 50),
+            googleButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            googleButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            googleButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            appleButton.topAnchor.constraint(equalTo: googleButton.bottomAnchor, constant: 10),
+            appleButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            appleButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            appleButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            separator.topAnchor.constraint(equalTo: appleButton.bottomAnchor, constant: 20),
+            separator.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            separator.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            firstNameTextField.topAnchor.constraint(equalTo: separator.bottomAnchor, constant: 35),
             firstNameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             firstNameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             firstNameTextField.heightAnchor.constraint(equalToConstant: 50),
@@ -208,41 +243,7 @@ final class RegistationViewController: UIViewController {
             createButton.heightAnchor.constraint(equalToConstant: 60),
         ])
     }
-    //MARK: Setup UI
-    private func setupUserInterface() {
-        view.backgroundColor = .mainWhite
-        let separator = createSeparator()
-        
-        [mainLabel, googleButton, appleButton, separator, scrollView].forEach {
-            view.addSubview($0)
-            $0.translatesAutoresizingMaskIntoConstraints = false
-        }
-        NSLayoutConstraint.activate([
-            mainLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            mainLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            mainLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            mainLabel.heightAnchor.constraint(equalToConstant: 30),
-            
-            googleButton.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: 50),
-            googleButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            googleButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            googleButton.heightAnchor.constraint(equalToConstant: 50),
-            
-            appleButton.topAnchor.constraint(equalTo: googleButton.bottomAnchor, constant: 10),
-            appleButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            appleButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            appleButton.heightAnchor.constraint(equalToConstant: 50),
-            
-            separator.topAnchor.constraint(equalTo: appleButton.bottomAnchor, constant: 20),
-            separator.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            separator.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            
-            scrollView.topAnchor.constraint(equalTo: appleButton.bottomAnchor, constant: 60),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-        ])
-    }
+   //MARK: Create UIAlertContoller
     private func setupAlert() {
         let alertViewControlelr = UIAlertController(title: "Dear user",
                                                     message: "You need agree to the Tearms of Service, including the Privacy Policy. to continue working.",
@@ -304,12 +305,19 @@ final class RegistationViewController: UIViewController {
         let contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
         scrollView.contentInset = contentInset
         scrollView.scrollIndicatorInsets = contentInset
+//        let contentOffset = CGPoint(x: 0, y: keyboardSize.height / 2)
+//        scrollView.contentOffset = contentOffset
+//        scrollView.setContentOffset(contentOffset, animated: true)
+        
     
 }
     @objc func keyboardHide(notification: NSNotification) {
         let contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         scrollView.contentInset = contentInset
         scrollView.scrollIndicatorInsets = contentInset
+//        let contentOffset = CGPoint(x: 0, y: 0)
+//        scrollView.contentOffset = contentOffset
+//        scrollView.setContentOffset(contentOffset, animated: true)
     }
 }
 
