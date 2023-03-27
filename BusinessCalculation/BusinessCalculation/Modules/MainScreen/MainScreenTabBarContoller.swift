@@ -15,10 +15,14 @@ class MainScreenTabBarContoller: UITabBarController {
         generateTabBarController()
         setupTabBarAppearance()
     }
-    
+    //MARK: Create NavController
+    //private let profileNavController = Nav
     //MARK: Generate TabBar
     private func generateTabBarController() {
         viewControllers = [
+            generateViewControllers(viewContoller: HomeViewController(),
+                                    title: "Главная",
+                                    image: UIImage(systemName: "house.fill")),
         generateViewControllers(viewContoller: BusinessPlansViewController(),
                                 title: "Бизнес планы",
                                 image: UIImage(systemName: "folder.fill")),
