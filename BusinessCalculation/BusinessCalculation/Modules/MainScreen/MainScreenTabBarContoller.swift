@@ -14,27 +14,37 @@ class MainScreenTabBarContoller: UITabBarController {
         super.viewDidLoad()
         generateTabBarController()
         setupTabBarAppearance()
+        setupNavBarAppearance()
     }
     //MARK: Create NavController
-    //private let profileNavController = Nav
+    private let profileNavController = UINavigationController(rootViewController: ProfileViewController())
     //MARK: Generate TabBar
     private func generateTabBarController() {
         viewControllers = [
-            generateViewControllers(viewContoller: HomeViewController(),
+            generateViewControllers(viewController: HomeViewController(),
                                     title: "Главная",
                                     image: UIImage(systemName: "house.fill")),
-        generateViewControllers(viewContoller: BusinessPlansViewController(),
+        generateViewControllers(viewController: BusinessPlansViewController(),
                                 title: "Бизнес планы",
                                 image: UIImage(systemName: "folder.fill")),
-        generateViewControllers(viewContoller: ProfileViewController(),
+        generateViewControllers(viewController: profileNavController,
                                 title: "Профиль",
                                 image: UIImage(systemName: "person.fill"))
         ]
     }
-    private func generateViewControllers(viewContoller: UIViewController, title: String, image: UIImage?) -> UIViewController {
-        viewContoller.tabBarItem.title = title
-        viewContoller.tabBarItem.image = image
-        return viewContoller
+    private func generateViewControllers(viewController: UIViewController, title: String, image: UIImage?) -> UIViewController {
+        viewController.tabBarItem.title = title
+        viewController.tabBarItem.image = image
+        return viewController
+    }
+    //MARK: Setup NavBar
+    private func setupNavBarAppearance() {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationItem.backButtonTitle = ""
+        navigationController?.navigationBar.tintColor = .tintColorNavContoller
+        navigationController?.navigationItem.title = "Профиль"
     }
     //MARK: Setup TabBar
     private func setupTabBarAppearance() {
