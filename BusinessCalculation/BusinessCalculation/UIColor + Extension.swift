@@ -8,6 +8,7 @@
 import UIKit
 
 extension UIColor {
+    //Registration Screen
     static var mainWhite: UIColor  {
         #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     }
@@ -23,6 +24,10 @@ extension UIColor {
     static var tintColorNavContoller: UIColor {
         #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
     }
+    //Main Screen
+    static var mainScreen: UIColor {
+        #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.9)
+    }
     static var tabBarColor: UIColor {
         #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     }
@@ -30,6 +35,6 @@ extension UIColor {
         #colorLiteral(red: 0.09537834674, green: 0.5528693199, blue: 0.09760322422, alpha: 1)
     }
     static var unselectedTabBarItem: UIColor {
-        #colorLiteral(red: 0.09537834674, green: 0.5528693199, blue: 0.09760322422, alpha: 0.5)
+        #colorLiteral(red: 0.09537834674, green: 0.5528693199, blue: 0.09760322422, alpha: 0.4)
     }
 }

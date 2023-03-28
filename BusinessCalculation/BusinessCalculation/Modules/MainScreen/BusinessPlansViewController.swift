@@ -7,11 +7,11 @@
 
 import UIKit
 
-class BusinessPlansViewController: UIViewController {
+final class BusinessPlansViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .magenta
+        view.backgroundColor = .mainScreen
     }
 
 }

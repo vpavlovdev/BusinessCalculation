@@ -14,23 +14,36 @@ class MainScreenTabBarContoller: UITabBarController {
         super.viewDidLoad()
         generateTabBarController()
         setupTabBarAppearance()
+        setupNavBarAppearance()
     }
-    
+    //MARK: Create NavController
+    private let profileNavController = UINavigationController(rootViewController: ProfileViewController())
     //MARK: Generate TabBar
     private func generateTabBarController() {
         viewControllers = [
-        generateViewControllers(viewContoller: BusinessPlansViewController(),
+            generateViewControllers(viewController: HomeViewController(),
+                                    title: "Главная",
+                                    image: UIImage(systemName: ImageNames.homeVC)),
+        generateViewControllers(viewController: BusinessPlansViewController(),
                                 title: "Бизнес планы",
-                                image: UIImage(systemName: "folder.fill")),
-        generateViewControllers(viewContoller: ProfileViewController(),
+                                image: UIImage(systemName: ImageNames.businessPlansVC)),
+        generateViewControllers(viewController: profileNavController,
                                 title: "Профиль",
-                                image: UIImage(systemName: "person.fill"))
+                                image: UIImage(systemName: ImageNames.profileVC))
         ]
     }
-    private func generateViewControllers(viewContoller: UIViewController, title: String, image: UIImage?) -> UIViewController {
-        viewContoller.tabBarItem.title = title
-        viewContoller.tabBarItem.image = image
-        return viewContoller
+    private func generateViewControllers(viewController: UIViewController, title: String, image: UIImage?) -> UIViewController {
+        viewController.tabBarItem.title = title
+        viewController.tabBarItem.image = image
+        return viewController
+    }
+    //MARK: Setup NavBar
+    private func setupNavBarAppearance() {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+        profileNavController.navigationBar.standardAppearance = appearance
+        profileNavController.navigationItem.backButtonTitle = ""
+        profileNavController.navigationBar.tintColor = .tintColorNavContoller
     }
     //MARK: Setup TabBar
     private func setupTabBarAppearance() {
@@ -45,7 +58,7 @@ class MainScreenTabBarContoller: UITabBarController {
         roundLayer.path = bezierPath.cgPath
         tabBar.layer.insertSublayer(roundLayer, at: 0)
         tabBar.itemPositioning = .centered
-        tabBar.itemWidth = width / 4
+        tabBar.itemWidth = width / 3
         
         //MARK: TabBar Colors
         roundLayer.fillColor = UIColor.tabBarColor.cgColor
