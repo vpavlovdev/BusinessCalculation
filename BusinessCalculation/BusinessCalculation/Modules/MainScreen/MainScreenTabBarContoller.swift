@@ -41,10 +41,9 @@ class MainScreenTabBarContoller: UITabBarController {
     private func setupNavBarAppearance() {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithTransparentBackground()
-        navigationController?.navigationBar.standardAppearance = appearance
-        navigationController?.navigationItem.backButtonTitle = ""
-        navigationController?.navigationBar.tintColor = .tintColorNavContoller
-        navigationController?.navigationItem.title = "Профиль"
+        profileNavController.navigationBar.standardAppearance = appearance
+        profileNavController.navigationItem.backButtonTitle = ""
+        profileNavController.navigationBar.tintColor = .tintColorNavContoller
     }
     //MARK: Setup TabBar
     private func setupTabBarAppearance() {
@@ -59,7 +58,7 @@ class MainScreenTabBarContoller: UITabBarController {
         roundLayer.path = bezierPath.cgPath
         tabBar.layer.insertSublayer(roundLayer, at: 0)
         tabBar.itemPositioning = .centered
-        tabBar.itemWidth = width / 4
+        tabBar.itemWidth = width / 3
         
         //MARK: TabBar Colors
         roundLayer.fillColor = UIColor.tabBarColor.cgColor
