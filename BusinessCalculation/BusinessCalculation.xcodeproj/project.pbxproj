@@ -35,6 +35,8 @@
 		CE67FB8D29BB7E6000C21E2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE67FB8C29BB7E6000C21E2F /* Assets.xcassets */; };
 		CE67FB9029BB7E6000C21E2F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE67FB8E29BB7E6000C21E2F /* LaunchScreen.storyboard */; };
 		CE8D423E29D1FD63000BA592 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8D423D29D1FD63000BA592 /* HomeViewController.swift */; };
+		CEA3CFFA29D31A6300AF2203 /* ImageNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA3CFF929D31A6300AF2203 /* ImageNames.swift */; };
+		CEA3CFFD29D31B4300AF2203 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA3CFFC29D31B4300AF2203 /* EditProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +62,8 @@
 		CE67FB8F29BB7E6000C21E2F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE67FB9129BB7E6000C21E2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE8D423D29D1FD63000BA592 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		CEA3CFF929D31A6300AF2203 /* ImageNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNames.swift; sourceTree = "<group>"; };
+		CEA3CFFC29D31B4300AF2203 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +101,7 @@
 				CE27CD3729CE257900974EB7 /* ProfileViewController.swift */,
 				CE27CD3A29CE25EF00974EB7 /* BusinessPlansViewController.swift */,
 				CE8D423D29D1FD63000BA592 /* HomeViewController.swift */,
+				CEA3CFFC29D31B4300AF2203 /* EditProfileViewController.swift */,
 			);
 			path = MainScreen;
 			sourceTree = "<group>";
@@ -194,6 +199,7 @@
 				CE35704C29C5A8BF00A5A0C4 /* Service */,
 				CE27CD3229CE09CD00974EB7 /* Modules */,
 				CE67FB8C29BB7E6000C21E2F /* Assets.xcassets */,
+				CEA3CFF929D31A6300AF2203 /* ImageNames.swift */,
 				CE356FEC29BCA8BF00A5A0C4 /* UIColor + Extension.swift */,
 				CE356FF829BCD28900A5A0C4 /* CustomButtons.swift */,
 				CE35700E29BE000300A5A0C4 /* CustomTextField.swift */,
@@ -296,7 +302,9 @@
 				CE356FF329BCC35D00A5A0C4 /* LoginModel.swift in Sources */,
 				CE356FF929BCD28900A5A0C4 /* CustomButtons.swift in Sources */,
 				CE27CD2B29CB1D8E00974EB7 /* GoogleButton.swift in Sources */,
+				CEA3CFFD29D31B4300AF2203 /* EditProfileViewController.swift in Sources */,
 				CE67FB8829BB7E5500C21E2F /* LoginViewController.swift in Sources */,
+				CEA3CFFA29D31A6300AF2203 /* ImageNames.swift in Sources */,
 				CE27CD3529CE0D2800974EB7 /* MainScreenTabBarContoller.swift in Sources */,
 				CE67FB8429BB7E5500C21E2F /* AppDelegate.swift in Sources */,
 				CE35704F29C5A90E00A5A0C4 /* ApiManager.swift in Sources */,

@@ -1,17 +1,19 @@
 //
-//  BusinessPlansViewController.swift
+//  EditProfileViewController.swift
 //  BusinessCalculation
 //
-//  Created by VPDev on 24.03.2023.
+//  Created by VPDev on 28.03.2023.
 //
 
 import UIKit
 
-final class BusinessPlansViewController: UIViewController {
+final class EditProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .mainScreen
+        
     }
+ 
 
 }

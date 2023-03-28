@@ -23,13 +23,13 @@ class MainScreenTabBarContoller: UITabBarController {
         viewControllers = [
             generateViewControllers(viewController: HomeViewController(),
                                     title: "Главная",
-                                    image: UIImage(systemName: "house.fill")),
+                                    image: UIImage(systemName: ImageNames.homeVC)),
         generateViewControllers(viewController: BusinessPlansViewController(),
                                 title: "Бизнес планы",
-                                image: UIImage(systemName: "folder.fill")),
+                                image: UIImage(systemName: ImageNames.businessPlansVC)),
         generateViewControllers(viewController: profileNavController,
                                 title: "Профиль",
-                                image: UIImage(systemName: "person.fill"))
+                                image: UIImage(systemName: ImageNames.profileVC))
         ]
     }
     private func generateViewControllers(viewController: UIViewController, title: String, image: UIImage?) -> UIViewController {
