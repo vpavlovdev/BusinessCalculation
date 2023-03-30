@@ -47,6 +47,8 @@ class FirebaseAPIManager {
         Auth.auth().signIn(withEmail: email, password: password) { (resutl, error) in
             guard error == nil else { return }
             print("We auth in app")
+            UserDefaults.standard.set(true, forKey: "Loged")
+            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(vc: MainScreenTabBarContoller())
         }
     }
     func signInGoogle() {

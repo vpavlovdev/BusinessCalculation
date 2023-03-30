@@ -16,9 +16,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
        
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
-        //window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
-        window?.rootViewController = MainScreenTabBarContoller()
         window?.makeKeyAndVisible()
+        if UserDefaults.standard.bool(forKey: "Loged") {
+            window?.rootViewController = MainScreenTabBarContoller()
+        } else {
+            window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
+        }
+    }
+    //Change VC after login/logout
+    func changeRootViewController(vc: UIViewController, animated: Bool = true) {
+        guard let window = self.window else { return }
+        window.rootViewController = vc
+        
+        UIView.transition(with: window,
+                          duration: 0.5,
+                          options: [.transitionFlipFromLeft],
+                          animations: nil,
+                          completion: nil)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

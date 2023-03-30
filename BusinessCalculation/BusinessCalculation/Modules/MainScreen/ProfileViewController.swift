@@ -61,6 +61,7 @@ final class ProfileViewController: UIViewController {
         super.viewDidLoad()
         setupUserInterface()
         setupNavigationBar()
+        addMethods()
        
     }
     //MARK: Setup NavBar
@@ -99,10 +100,18 @@ final class ProfileViewController: UIViewController {
         ])
         
     }
+    //MARK: Add method
+    private func addMethods() {
+        logoutButton.addTarget(self, action: #selector(logoutButtonTapped), for: .touchUpInside)
+    }
     //MARK: Private methods
     @objc private func editButtonTapped() {
         let vc = EditProfileViewController()
         navigationController?.pushViewController(vc, animated: true)
+    }
+    @objc private func logoutButtonTapped() {
+        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(vc: LoginViewController())
+        UserDefaults.standard.set(false, forKey: "Loged")
     }
     
 }
