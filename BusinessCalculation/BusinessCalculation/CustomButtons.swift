@@ -13,6 +13,7 @@ enum CustomButtonType {
     case google
     case apple
     case createButton
+    case logoutButton
     
     var title: String {
         switch self {
@@ -21,6 +22,7 @@ enum CustomButtonType {
         case .google: return "Continue with Google"
         case .apple: return "Continue with Apple"
         case .createButton: return "Create my account"
+        case .logoutButton: return "Logout"
         }
     }
     var textColor: UIColor {
@@ -30,6 +32,7 @@ enum CustomButtonType {
         case .google: return .white
         case .apple: return .black
         case .createButton: return .white
+        case .logoutButton: return .white
         }
     }
     var backgroundColor: UIColor {

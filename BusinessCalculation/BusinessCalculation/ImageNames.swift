@@ -16,4 +16,6 @@ enum ImageNames {
     //ProfileViewContoller
     static let editButton = "square.and.pencil"
     static let userImage = "user"
+    //EditProfileViewController
+    static let deleteButton = "trash.fill"
 }
