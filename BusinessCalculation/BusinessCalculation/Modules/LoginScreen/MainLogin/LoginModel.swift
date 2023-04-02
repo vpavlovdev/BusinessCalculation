@@ -16,8 +16,8 @@ struct Content {
 
 struct Source {
     static func makeContent() -> [Content] {
-        return [.init(title: "Welcome to BusiCal", imageName: "1", description: "BusiCal - Это готовое решение для Вашего бизнеса"),
-                .init(title: "Появилась идея для бизнеса?", imageName: "2", description: "Расчеты для бизнеса у Вас в кармане"),
-                .init(title: "Владете бизнесом?", imageName: "3", description: "BusiCal поможет Вам управлять им")]
+        return [.init(title: "Welcome to BusiCal", imageName: ImageNames.firstImage, description: "BusiCal - Это готовое решение для Вашего бизнеса"),
+                .init(title: "Появилась идея для бизнеса?", imageName: ImageNames.secondImage, description: "Расчеты для бизнеса у Вас в кармане"),
+                .init(title: "Владете бизнесом?", imageName: ImageNames.thirdImage, description: "BusiCal поможет Вам управлять им")]
     }
 }

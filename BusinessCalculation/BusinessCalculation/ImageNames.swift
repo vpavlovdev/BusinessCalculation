@@ -8,6 +8,10 @@
 import Foundation
 
 enum ImageNames {
+    //LoginViewController
+    static let firstImage = "1"
+    static let secondImage = "2"
+    static let thirdImage = "3"
     
     //MainScreenTabBarController
     static let homeVC = "house.fill"
