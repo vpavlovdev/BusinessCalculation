@@ -7,6 +7,12 @@
 
 import UIKit
 
+fileprivate enum LocalConstant {
+    static let navigationTitle = "Business calculation"
+    static let backButtonTittle = ""
+    static let identifierCell = "LoginCell"
+}
+
 final class LoginViewController: UIViewController {
     private let content: [Content] = Source.makeContent()
     
@@ -44,10 +50,10 @@ final class LoginViewController: UIViewController {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithTransparentBackground()
         navigationController?.navigationBar.standardAppearance = appearance
-        navigationItem.backButtonTitle = ""
+        navigationItem.backButtonTitle = LocalConstant.backButtonTittle
         navigationController?.navigationBar.tintColor = .tintColorNavContoller
         
-        navigationItem.title = "Business calculation"
+        navigationItem.title = LocalConstant.navigationTitle
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     private func setupCollectionView() {
@@ -62,7 +68,7 @@ final class LoginViewController: UIViewController {
             onboardCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             onboardCollectionView.heightAnchor.constraint(equalToConstant: 420),
         ])
-        onboardCollectionView.register(LoginCollectionViewCell.self, forCellWithReuseIdentifier: "LoginCell")
+        onboardCollectionView.register(LoginCollectionViewCell.self, forCellWithReuseIdentifier: LocalConstant.identifierCell)
         onboardCollectionView.dataSource = self
         onboardCollectionView.delegate = self
         onboardCollectionView.backgroundColor = .clear
@@ -126,7 +132,7 @@ extension LoginViewController: UICollectionViewDataSource, UICollectionViewDeleg
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LoginCell", for: indexPath) as? LoginCollectionViewCell else { fatalError("Cell error") }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LocalConstant.identifierCell, for: indexPath) as? LoginCollectionViewCell else { fatalError("Cell error") }
         cell.configureCell(content: content[indexPath.item])
         return cell
     }
