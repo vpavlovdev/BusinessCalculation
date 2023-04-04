@@ -29,7 +29,25 @@ final class EditProfileViewController: UIViewController {
     //MARK: Private methods
     @objc private func deleteButtonTapped() {
         print(#function)
+        createAlert()
     }
+    private func createAlert() {
+        let alert = UIAlertController(title: "Dear user",
+                                      message: "Are you sure that to want delete your profile?",
+                                      preferredStyle: .actionSheet)
+        let actionOK = UIAlertAction(title: "Yes", style: .default) { (action) in
+            
+        }
+        let actionCansel = UIAlertAction(title: "Cansel", style: .cancel) { (action) in
+            
+        }
+        alert.addAction(actionOK)
+        alert.addAction(actionCansel)
+        self.present(alert, animated: true) {
+            
+        }
+    }
+    
 }
 extension EditProfileViewController: CreateNavBarItemProtocol {
     //Create custom button for NavBar
