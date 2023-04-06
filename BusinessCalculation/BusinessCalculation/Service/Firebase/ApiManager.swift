@@ -73,5 +73,12 @@ class FirebaseAPIManager {
 
         }
     }
+    func  deleteUser(completion: @escaping (Error?) -> Void) {
+        guard let user = Auth.auth().currentUser else { return }
+        user.delete { error in
+            guard error == nil else { completion(error); return }
+            completion(nil)
+        }
+    }
 }
 
