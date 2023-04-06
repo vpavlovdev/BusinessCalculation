@@ -31,10 +31,10 @@ class FirebaseAPIManager {
             Auth.auth().createUser(withEmail: newUser.email, password: newUser.password) { (result, error) in
                 guard error == nil  else { print("this error "); return }
                 let db = self.configureFB()
-                db.collection("users").addDocument(
-                    data: ["firstName" : newUser.firstName,
-                           "lastName" : newUser.lastName,
-                           "uid" : result!.user.uid])
+                db.collection("users").document("\(newUser.email.lowercased())").setData(
+                    ["firstName" : newUser.firstName,
+                     "lastName" : newUser.lastName,
+                     "uid" : result!.user.uid])
                 { (error) in
                     guard error == nil else { return } //Change label
                 }
@@ -70,7 +70,7 @@ class FirebaseAPIManager {
                     
                 }
             }
-
+            
         }
     }
     func  deleteUser(completion: @escaping (Error?) -> Void) {
@@ -79,6 +79,18 @@ class FirebaseAPIManager {
             guard error == nil else { completion(error); return }
             completion(nil)
         }
+    }
+    func getUser() {
+        guard let user = Auth.auth().currentUser,
+              let email = user.email else { return }
+        let db = configureFB()
+        db.collection("users").document("\(email)").getDocument { (document, error) in
+            guard error == nil else { return }
+            let userName = document?.get("firstName") as? String
+            let lastName = document?.get("lastName") as? String
+            print("\(String(describing: userName)) \(String(describing: lastName))")
+        }
+        
     }
 }
 

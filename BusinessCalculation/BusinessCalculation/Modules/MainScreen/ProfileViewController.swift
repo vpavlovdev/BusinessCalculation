@@ -62,6 +62,7 @@ final class ProfileViewController: UIViewController {
         setupUserInterface()
         setupNavigationBar()
         addMethods()
+        FirebaseAPIManager.shared.getUser()
        
     }
     //MARK: Setup NavBar
