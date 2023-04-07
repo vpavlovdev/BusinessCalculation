@@ -42,11 +42,10 @@ final class ProfileViewController: UIViewController {
         view.layer.zPosition = 0.1
         return view
     }()
-    private let userNameLabel: UILabel = {
+    private var userNameLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.font = .boldSystemFont(ofSize: LocalConstants.fontUserName)
-        label.text = LocalConstants.userName
         return label
     }()
     private let logoutButton: CustomButton = {
@@ -62,7 +61,12 @@ final class ProfileViewController: UIViewController {
         setupUserInterface()
         setupNavigationBar()
         addMethods()
-        FirebaseAPIManager.shared.getUser()
+        FirebaseAPIManager.shared.getUser { [weak self] user in
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+                self.userNameLabel.text = user.firstName ?? LocalConstants.userName
+            }
+        }
        
     }
     //MARK: Setup NavBar

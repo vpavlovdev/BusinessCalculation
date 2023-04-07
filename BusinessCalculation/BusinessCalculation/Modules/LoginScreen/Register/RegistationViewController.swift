@@ -13,7 +13,7 @@ import Firebase
 
 final class RegistationViewController: UIViewController {
     //User
-    private var newUser: User?
+    private var newUser: RegisterUser?
     //MARK: UIElements
     private let mainLabel: UILabel = {
         let label = UILabel()
@@ -292,7 +292,7 @@ final class RegistationViewController: UIViewController {
            setupAlert()
             return
         }
-        let user = User(firstName: firstNameTextField.text!, lastName: lastNameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!)
+        let user = RegisterUser(firstName: firstNameTextField.text!, lastName: lastNameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!)
         print(user)
         FirebaseAPIManager.shared.registrationNewUser(newUser: user)
     }

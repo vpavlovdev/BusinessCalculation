@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import FirebaseAuth
 import Firebase
+import FirebaseFirestoreSwift
 import FirebaseDatabaseSwift
 import GoogleSignIn
 import GoogleSignInSwift
@@ -26,7 +27,7 @@ class FirebaseAPIManager {
         return db
     }
     
-    func registrationNewUser(newUser: User) {
+    func registrationNewUser(newUser: RegisterUser) {
         DispatchQueue.main.async {
             Auth.auth().createUser(withEmail: newUser.email, password: newUser.password) { (result, error) in
                 guard error == nil  else { print("this error "); return }
@@ -80,15 +81,14 @@ class FirebaseAPIManager {
             completion(nil)
         }
     }
-    func getUser() {
+    func getUser(completion: @escaping (AuthUser)-> Void) {
         guard let user = Auth.auth().currentUser,
               let email = user.email else { return }
         let db = configureFB()
         db.collection("users").document("\(email)").getDocument { (document, error) in
             guard error == nil else { return }
-            let userName = document?.get("firstName") as? String
-            let lastName = document?.get("lastName") as? String
-            print("\(String(describing: userName)) \(String(describing: lastName))")
+            let currentUser = try? document?.data(as: AuthUser.self)
+            completion(currentUser ?? AuthUser())
         }
         
     }
