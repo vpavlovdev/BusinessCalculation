@@ -10,6 +10,7 @@ fileprivate enum LocalConstants {
     static let widthProfileImage: CGFloat = 150
     static let heightProfileImage: CGFloat = 150
     static let cornerRadius: CGFloat = heightProfileImage / 2
+    static let profileInfoFont: CGFloat = 20
 }
 
 final class EditProfileViewController: UIViewController {
@@ -40,8 +41,29 @@ final class EditProfileViewController: UIViewController {
     }()
     private let nameLabel: UILabel = {
         let label = UILabel()
+        label.textAlignment = .left
+        label.font = .boldSystemFont(ofSize: LocalConstants.profileInfoFont)
+        label.text = "Имя"
         return label
     }()
+    private let nameTextField: CustomTextField = {
+        let textField = CustomTextField()
+        textField.font = .boldSystemFont(ofSize: LocalConstants.profileInfoFont)
+        return textField
+    }()
+    private let lastNameLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .left
+        label.font = .boldSystemFont(ofSize: LocalConstants.profileInfoFont)
+        label.text = "Фамилия"
+        return label
+    }()
+    private let lastNameTextField: CustomTextField = {
+        let textField = CustomTextField()
+        textField.font = .boldSystemFont(ofSize: LocalConstants.profileInfoFont)
+        return textField
+    }()
+    
     
     
     //MARK: Life cicle
@@ -59,7 +81,7 @@ final class EditProfileViewController: UIViewController {
     //MARK: Setup UserInterface
     private func setupUserInterface() {
         view.backgroundColor = .mainScreen
-        [profileImageView, shadowView].forEach {
+        [profileImageView, shadowView, nameLabel, nameTextField, lastNameLabel, lastNameTextField].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -73,6 +95,28 @@ final class EditProfileViewController: UIViewController {
             shadowView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             shadowView.widthAnchor.constraint(equalToConstant: LocalConstants.widthProfileImage),
             shadowView.heightAnchor.constraint(equalToConstant: LocalConstants.heightProfileImage),
+            
+            nameLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 80),
+            nameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            nameLabel.heightAnchor.constraint(equalToConstant: 30),
+            nameLabel.widthAnchor.constraint(equalToConstant: 90),
+            
+            nameTextField.centerYAnchor.constraint(equalTo: nameLabel.centerYAnchor),
+            nameTextField.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor, constant: 10),
+            nameTextField.heightAnchor.constraint(equalToConstant: 50),
+            nameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            
+            lastNameLabel.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 25),
+            lastNameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            lastNameLabel.heightAnchor.constraint(equalToConstant: 30),
+            lastNameLabel.widthAnchor.constraint(equalToConstant: 90),
+            
+            lastNameTextField.centerYAnchor.constraint(equalTo: lastNameLabel.centerYAnchor),
+            lastNameTextField.leadingAnchor.constraint(equalTo: lastNameLabel.trailingAnchor, constant: 10),
+            lastNameTextField.heightAnchor.constraint(equalToConstant: 50),
+            lastNameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            
+            
     ])
     }
     //MARK: Private methods
