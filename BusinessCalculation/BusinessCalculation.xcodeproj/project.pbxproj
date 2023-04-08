@@ -100,8 +100,8 @@
 			isa = PBXGroup;
 			children = (
 				CE27CD3429CE0D2800974EB7 /* MainScreenTabBarContoller.swift */,
-				CE27CD3729CE257900974EB7 /* ProfileViewController.swift */,
-				CEA3CFFC29D31B4300AF2203 /* EditProfileViewController.swift */,
+				CE6578A829E06723000F3240 /* ProfileScreen */,
+				CE6578AA29E0673A000F3240 /* EditProfileScreen */,
 				CE27CD3A29CE25EF00974EB7 /* BusinessPlansViewController.swift */,
 				CE8D423D29D1FD63000BA592 /* HomeViewController.swift */,
 				CE9DEC0B29D4A0F70026CF52 /* CreateNavBarItemProtocol.swift */,
@@ -176,6 +176,22 @@
 				CE35705129C5E84100A5A0C4 /* UserModel.swift */,
 			);
 			path = Firebase;
+			sourceTree = "<group>";
+		};
+		CE6578A829E06723000F3240 /* ProfileScreen */ = {
+			isa = PBXGroup;
+			children = (
+				CE27CD3729CE257900974EB7 /* ProfileViewController.swift */,
+			);
+			path = ProfileScreen;
+			sourceTree = "<group>";
+		};
+		CE6578AA29E0673A000F3240 /* EditProfileScreen */ = {
+			isa = PBXGroup;
+			children = (
+				CEA3CFFC29D31B4300AF2203 /* EditProfileViewController.swift */,
+			);
+			path = EditProfileScreen;
 			sourceTree = "<group>";
 		};
 		CE67FB7729BB7E5500C21E2F = {
