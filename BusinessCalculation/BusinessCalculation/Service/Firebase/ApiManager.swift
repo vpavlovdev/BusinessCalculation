@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import FirebaseAuth
 import Firebase
+import FirebaseFirestoreSwift
 import FirebaseDatabaseSwift
 import GoogleSignIn
 import GoogleSignInSwift
@@ -26,15 +27,15 @@ class FirebaseAPIManager {
         return db
     }
     
-    func registrationNewUser(newUser: User) {
+    func registrationNewUser(newUser: RegisterUser) {
         DispatchQueue.main.async {
             Auth.auth().createUser(withEmail: newUser.email, password: newUser.password) { (result, error) in
                 guard error == nil  else { print("this error "); return }
                 let db = self.configureFB()
-                db.collection("users").addDocument(
-                    data: ["firstName" : newUser.firstName,
-                           "lastName" : newUser.lastName,
-                           "uid" : result!.user.uid])
+                db.collection("users").document("\(newUser.email.lowercased())").setData(
+                    ["firstName" : newUser.firstName,
+                     "lastName" : newUser.lastName,
+                     "uid" : result!.user.uid])
                 { (error) in
                     guard error == nil else { return } //Change label
                 }
@@ -70,8 +71,26 @@ class FirebaseAPIManager {
                     
                 }
             }
-
+            
         }
+    }
+    func  deleteUser(completion: @escaping (Error?) -> Void) {
+        guard let user = Auth.auth().currentUser else { return }
+        user.delete { error in
+            guard error == nil else { completion(error); return }
+            completion(nil)
+        }
+    }
+    func getUser(completion: @escaping (AuthUser)-> Void) {
+        guard let user = Auth.auth().currentUser,
+              let email = user.email else { return }
+        let db = configureFB()
+        db.collection("users").document("\(email)").getDocument { (document, error) in
+            guard error == nil else { return }
+            let currentUser = try? document?.data(as: AuthUser.self)
+            completion(currentUser ?? AuthUser())
+        }
+        
     }
 }
 

@@ -6,10 +6,18 @@
 //
 
 import Foundation
+import FirebaseFirestoreSwift
 
-struct User {
+
+struct RegisterUser: Codable {
     var firstName: String
     var lastName: String
     var email: String
     var password: String
+}
+
+struct AuthUser: Codable {
+    var firstName: String?
+    var lastName: String?
+    var uid: String?
 }
