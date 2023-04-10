@@ -81,14 +81,14 @@ class FirebaseAPIManager {
             completion(nil)
         }
     }
-    func getUser(completion: @escaping (AuthUser)-> Void) {
+    func getUser(completion: @escaping (AuthUserModel)-> Void) {
         guard let user = Auth.auth().currentUser,
               let email = user.email else { return }
         let db = configureFB()
         db.collection("users").document("\(email)").getDocument { (document, error) in
             guard error == nil else { return }
-            let currentUser = try? document?.data(as: AuthUser.self)
-            completion(currentUser ?? AuthUser())
+            let currentUser = try? document?.data(as: AuthUserModel.self)
+            completion(currentUser ?? AuthUserModel())
         }
         
     }

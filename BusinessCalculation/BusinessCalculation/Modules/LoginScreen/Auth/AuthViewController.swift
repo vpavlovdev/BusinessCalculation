@@ -13,27 +13,48 @@ import Firebase
 import GoogleSignIn
 import GoogleSignInSwift
 
+fileprivate enum LocalConstants {
+    static let navigationItemTitle = "Business calculation"
+    static let mainLabelText = "Log in to BusiCal"
+    static let errorLabelStatus = "Неверная пара логин/пароль"
+    static let mainLabelFont: CGFloat = 24
+    static let loginTextFieldPlacaholder = "Username or Email"
+    static let passwordTextFieldPlaceholder = "Entry your password"
+    static let appleButtonCornerRadius: CGFloat = 15
+    static let separatorText = "or"
+    static let separatotTextFont: CGFloat = 15
+    static let buttonHeight: CGFloat = 50
+    static let buttonLeadingAnchor: CGFloat = 30
+    static let buttonTrailingAnchor: CGFloat = -30
+    static let textFieldHeight: CGFloat = 50
+    static let textFieldLeadingAnchor: CGFloat = 30
+    static let textFieldTrailingAnchor: CGFloat = -30
+}
 final class AuthViewController: UIViewController {
+    private var authViewModel: AuthViewModelProtocol = AuthViewModel()
+    
     //MARK: UIElements
     private let mainLabel: UILabel = {
         let label = UILabel()
-        label.text = "Log in to BusiCal"
+        label.text = LocalConstants.mainLabelText
         label.textAlignment = .center
-        label.font = .boldSystemFont(ofSize: 24)
+        label.font = .boldSystemFont(ofSize: LocalConstants.mainLabelFont)
         return label
     }()
-    private let loginNameTextField: CustomTextField = {
+    private lazy var loginNameTextField: CustomTextField = {
         let textField = CustomTextField()
         textField.setupPersonImageLeftView()
         textField.tag = 0
-        textField.placeholder = "Username or Email"
+        textField.placeholder = LocalConstants.loginTextFieldPlacaholder
+        textField.delegate = self
         return textField
     }()
-    private let passworTextField: CustomTextField = {
+    private lazy var passworTextField: CustomTextField = {
         let textField = CustomTextField()
         textField.setupSecureButton()
         textField.tag = 1
-        textField.placeholder = "Entry your password"
+        textField.placeholder = LocalConstants.passwordTextFieldPlaceholder
+        textField.delegate = self
         return textField
     }()
     private let loginButton: CustomButton = {
@@ -47,7 +68,7 @@ final class AuthViewController: UIViewController {
     }()
     private let appleButton: ASAuthorizationAppleIDButton = {
         let button = ASAuthorizationAppleIDButton(authorizationButtonType: .continue, authorizationButtonStyle: .black)
-        button.cornerRadius = 15
+        button.cornerRadius = LocalConstants.appleButtonCornerRadius
         return button
     }()
     
@@ -63,12 +84,12 @@ final class AuthViewController: UIViewController {
     private func createSeparator() -> UIView {
         let separatorView = UIView()
         let viewOne = UIView()
-        viewOne.backgroundColor = .gray
+        viewOne.backgroundColor = .separatorColor
         let viewTwo = UIView()
-        viewTwo.backgroundColor = .gray
+        viewTwo.backgroundColor = .separatorColor
         let label = UILabel()
-        label.font = .systemFont(ofSize: 15)
-        label.text = "or"
+        label.font = .systemFont(ofSize: LocalConstants.separatotTextFont)
+        label.text = LocalConstants.separatorText
         
         [viewOne, viewTwo, label].forEach {
             separatorView.addSubview($0)
@@ -96,7 +117,7 @@ final class AuthViewController: UIViewController {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithTransparentBackground()
         navigationController?.navigationBar.standardAppearance = appearance
-        navigationItem.title = "Business calculation"
+        navigationItem.title = LocalConstants.navigationItemTitle
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     private func setupUserInterface() {
@@ -107,8 +128,6 @@ final class AuthViewController: UIViewController {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
-        loginNameTextField.delegate = self
-        passworTextField.delegate = self
         NSLayoutConstraint.activate([
             mainLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40),
             mainLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
@@ -116,29 +135,29 @@ final class AuthViewController: UIViewController {
             mainLabel.heightAnchor.constraint(equalToConstant: 30),
             
             loginNameTextField.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: 30),
-            loginNameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            loginNameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            loginNameTextField.heightAnchor.constraint(equalToConstant: 50),
+            loginNameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LocalConstants.textFieldLeadingAnchor),
+            loginNameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: LocalConstants.textFieldTrailingAnchor),
+            loginNameTextField.heightAnchor.constraint(equalToConstant: LocalConstants.textFieldHeight),
             
             passworTextField.topAnchor.constraint(equalTo: loginNameTextField.bottomAnchor, constant: 10),
-            passworTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            passworTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            passworTextField.heightAnchor.constraint(equalToConstant: 50),
+            passworTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LocalConstants.textFieldLeadingAnchor),
+            passworTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: LocalConstants.textFieldTrailingAnchor),
+            passworTextField.heightAnchor.constraint(equalToConstant: LocalConstants.textFieldHeight),
             
             loginButton.topAnchor.constraint(equalTo: passworTextField.bottomAnchor, constant: 15),
-            loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            loginButton.heightAnchor.constraint(equalToConstant: 50),
+            loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LocalConstants.buttonLeadingAnchor),
+            loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: LocalConstants.buttonTrailingAnchor),
+            loginButton.heightAnchor.constraint(equalToConstant: LocalConstants.buttonHeight),
             
             googleButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 60),
-            googleButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            googleButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            googleButton.heightAnchor.constraint(equalToConstant: 50),
+            googleButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LocalConstants.buttonLeadingAnchor),
+            googleButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: LocalConstants.buttonTrailingAnchor),
+            googleButton.heightAnchor.constraint(equalToConstant: LocalConstants.buttonHeight),
             
             appleButton.topAnchor.constraint(equalTo: googleButton.bottomAnchor, constant: 10),
-            appleButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            appleButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            appleButton.heightAnchor.constraint(equalToConstant: 50),
+            appleButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LocalConstants.buttonLeadingAnchor),
+            appleButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: LocalConstants.buttonTrailingAnchor),
+            appleButton.heightAnchor.constraint(equalToConstant: LocalConstants.buttonHeight),
             
             separator.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             separator.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -151,16 +170,12 @@ final class AuthViewController: UIViewController {
         googleButton.addTarget(self, action: #selector(googleTapped), for: .touchUpInside)
     }
     @objc private func loginTapped(sender: CustomButton) {
-        print(#function)
-        FirebaseAPIManager.shared.signInUser(email: loginNameTextField.text!, password: passworTextField.text!)
+        guard let email = loginNameTextField.text,
+              let password = passworTextField.text else { return }
+        authViewModel.signIn(email: email, password: password)
     }
     @objc private func googleTapped() {
-        print(#function)
-        FirebaseAPIManager.shared.signInGoogle()
-    }
-    
-    @objc func hideKeyboar() {
-        passworTextField.resignFirstResponder()
+        authViewModel.signInWithGoogle()
     }
 }
 

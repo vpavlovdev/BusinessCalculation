@@ -24,6 +24,15 @@ extension UIColor {
     static var tintColorNavContoller: UIColor {
         #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
     }
+    static var separatorColor: UIColor {
+        #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+    }
+    static var onboardingTextColor: UIColor {
+        #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+    }
+    static var onboardingDescriptionColor: UIColor {
+        #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+    }
     //Main Screen
     static var mainScreen: UIColor {
         #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.9)

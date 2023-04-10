@@ -7,6 +7,7 @@
 
 import UIKit
 
+//MARK: LocalConstants
 fileprivate enum LocalConstant {
     static let navigationTitle = "Business calculation"
     static let backButtonTittle = ""
@@ -50,7 +51,7 @@ final class LoginViewController: UIViewController {
         addMethods()
     }
     
-    //MARK: Setup UI
+    //MARK: Setup Navigation
     private func setupNavigationBar() {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithTransparentBackground()
@@ -61,12 +62,14 @@ final class LoginViewController: UIViewController {
         navigationItem.title = LocalConstant.navigationTitle
         navigationController?.navigationBar.prefersLargeTitles = true
     }
+    
+    //MARK: Setup UIColletctionView
     private func setupCollectionView() {
         onboardCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout())
         view.addSubview(onboardCollectionView)
         onboardCollectionView.translatesAutoresizingMaskIntoConstraints = false
         
-        //MARK: UICollectionView Constraint
+        //UICollectionView Constraint
         NSLayoutConstraint.activate([
             onboardCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
             onboardCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -87,6 +90,7 @@ final class LoginViewController: UIViewController {
         layout.minimumLineSpacing = LocalConstant.minimumLineSpacing
         return layout
     }
+    //MARK: Setup UserInterface
     private func setupUserInterface() {
         view.backgroundColor = .mainWhite
         [pageControl, loginButton, signupButton].forEach {
@@ -130,7 +134,7 @@ final class LoginViewController: UIViewController {
     }
     
 }
-
+//MARK: Extension LoginViewController
 extension LoginViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         loginViewModel.numberOfItemsInSEction()

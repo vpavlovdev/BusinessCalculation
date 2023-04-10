@@ -16,8 +16,3 @@ struct RegisterUser: Codable {
     var password: String
 }
 
-struct AuthUser: Codable {
-    var firstName: String?
-    var lastName: String?
-    var uid: String?
-}

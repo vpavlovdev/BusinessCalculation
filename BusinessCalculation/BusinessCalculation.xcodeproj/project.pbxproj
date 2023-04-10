@@ -33,6 +33,9 @@
 		CE559AE029E465D5009F66E9 /* LoginViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE559ADF29E465D5009F66E9 /* LoginViewModelProtocol.swift */; };
 		CE559AE429E468D8009F66E9 /* ItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE559AE329E468D8009F66E9 /* ItemViewModel.swift */; };
 		CE559AE729E468F1009F66E9 /* ItemViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE559AE629E468F1009F66E9 /* ItemViewModelProtocol.swift */; };
+		CE559AF229E4706D009F66E9 /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE559AF129E4706D009F66E9 /* AuthModel.swift */; };
+		CE559AF529E4707E009F66E9 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE559AF429E4707E009F66E9 /* AuthViewModel.swift */; };
+		CE559AF829E4708E009F66E9 /* AuthViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE559AF729E4708E009F66E9 /* AuthViewModelProtocol.swift */; };
 		CE67FB8429BB7E5500C21E2F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE67FB8329BB7E5500C21E2F /* AppDelegate.swift */; };
 		CE67FB8629BB7E5500C21E2F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE67FB8529BB7E5500C21E2F /* SceneDelegate.swift */; };
 		CE67FB8829BB7E5500C21E2F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE67FB8729BB7E5500C21E2F /* LoginViewController.swift */; };
@@ -63,6 +66,9 @@
 		CE559ADF29E465D5009F66E9 /* LoginViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelProtocol.swift; sourceTree = "<group>"; };
 		CE559AE329E468D8009F66E9 /* ItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewModel.swift; sourceTree = "<group>"; };
 		CE559AE629E468F1009F66E9 /* ItemViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewModelProtocol.swift; sourceTree = "<group>"; };
+		CE559AF129E4706D009F66E9 /* AuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
+		CE559AF429E4707E009F66E9 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		CE559AF729E4708E009F66E9 /* AuthViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModelProtocol.swift; sourceTree = "<group>"; };
 		CE67FB8029BB7E5500C21E2F /* BusinessCalculation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BusinessCalculation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE67FB8329BB7E5500C21E2F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE67FB8529BB7E5500C21E2F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -149,7 +155,10 @@
 		CE35700C29BDFCF800A5A0C4 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				CE559AF129E4706D009F66E9 /* AuthModel.swift */,
 				CE356FE629BCA50800A5A0C4 /* AuthViewController.swift */,
+				CE559AF429E4707E009F66E9 /* AuthViewModel.swift */,
+				CE559AF729E4708E009F66E9 /* AuthViewModelProtocol.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -354,9 +363,11 @@
 				CE35702829BF185900A5A0C4 /* LoginCollectionViewCell.swift in Sources */,
 				CE356FE729BCA50800A5A0C4 /* AuthViewController.swift in Sources */,
 				CE8D423E29D1FD63000BA592 /* HomeViewController.swift in Sources */,
+				CE559AF229E4706D009F66E9 /* AuthModel.swift in Sources */,
 				CE9DEC0C29D4A0F70026CF52 /* CreateNavBarItemProtocol.swift in Sources */,
 				CE356FF329BCC35D00A5A0C4 /* LoginModel.swift in Sources */,
 				CE356FF929BCD28900A5A0C4 /* CustomButtons.swift in Sources */,
+				CE559AF829E4708E009F66E9 /* AuthViewModelProtocol.swift in Sources */,
 				CE559AE429E468D8009F66E9 /* ItemViewModel.swift in Sources */,
 				CE27CD2B29CB1D8E00974EB7 /* GoogleButton.swift in Sources */,
 				CEA3CFFD29D31B4300AF2203 /* EditProfileViewController.swift in Sources */,
@@ -373,6 +384,7 @@
 				CE35705229C5E84200A5A0C4 /* UserModel.swift in Sources */,
 				CE35700F29BE000300A5A0C4 /* CustomTextField.swift in Sources */,
 				CE27CD3B29CE25EF00974EB7 /* BusinessPlansViewController.swift in Sources */,
+				CE559AF529E4707E009F66E9 /* AuthViewModel.swift in Sources */,
 				CE559ADC29E4659C009F66E9 /* LoginViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
