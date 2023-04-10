@@ -11,10 +11,15 @@ fileprivate enum LocalConstant {
     static let navigationTitle = "Business calculation"
     static let backButtonTittle = ""
     static let identifierCell = "LoginCell"
+    static let heightCollection: CGFloat = 420
+    static let minimumLineSpacing: CGFloat = 0
+    static let heightButtons: CGFloat = 50
+    static let buttonsLeadingAnchor: CGFloat = 30
+    static let buttonsTrailingAnchor: CGFloat = -30
 }
 
 final class LoginViewController: UIViewController {
-    private let content: [Content] = Source.makeContent()
+    private var loginViewModel: LoginViewModelProtocol = LoginViewModel()
     
     //MARK: UIElements
     private var onboardCollectionView: UICollectionView!
@@ -44,7 +49,7 @@ final class LoginViewController: UIViewController {
         setupCollectionView()
         addMethods()
     }
-   
+    
     //MARK: Setup UI
     private func setupNavigationBar() {
         let appearance = UINavigationBarAppearance()
@@ -61,12 +66,12 @@ final class LoginViewController: UIViewController {
         view.addSubview(onboardCollectionView)
         onboardCollectionView.translatesAutoresizingMaskIntoConstraints = false
         
-    //MARK: UICollectionView Constraint
+        //MARK: UICollectionView Constraint
         NSLayoutConstraint.activate([
             onboardCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
             onboardCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             onboardCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            onboardCollectionView.heightAnchor.constraint(equalToConstant: 420),
+            onboardCollectionView.heightAnchor.constraint(equalToConstant: LocalConstant.heightCollection),
         ])
         onboardCollectionView.register(LoginCollectionViewCell.self, forCellWithReuseIdentifier: LocalConstant.identifierCell)
         onboardCollectionView.dataSource = self
@@ -77,9 +82,9 @@ final class LoginViewController: UIViewController {
     }
     private func flowLayout() -> UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = .init(width: view.frame.width, height: 420)
+        layout.itemSize = .init(width: view.frame.width, height: LocalConstant.heightCollection)
         layout.scrollDirection = .horizontal
-        layout.minimumLineSpacing = 0
+        layout.minimumLineSpacing = LocalConstant.minimumLineSpacing
         return layout
     }
     private func setupUserInterface() {
@@ -88,21 +93,21 @@ final class LoginViewController: UIViewController {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
-        pageControl.numberOfPages = content.count
+        pageControl.numberOfPages = loginViewModel.numberOfItemsInSEction()
         //MARK: UIconstraint
         NSLayoutConstraint.activate([
             pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             pageControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 480),
             
             loginButton.topAnchor.constraint(equalTo: pageControl.bottomAnchor, constant: 40),
-            loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            loginButton.heightAnchor.constraint(equalToConstant: 50),
+            loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LocalConstant.buttonsLeadingAnchor),
+            loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: LocalConstant.buttonsTrailingAnchor),
+            loginButton.heightAnchor.constraint(equalToConstant: LocalConstant.heightButtons),
             
             signupButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 20),
-            signupButton.leadingAnchor.constraint(equalTo: loginButton.leadingAnchor),
-            signupButton.trailingAnchor.constraint(equalTo: loginButton.trailingAnchor),
-            signupButton.heightAnchor.constraint(equalToConstant: 50),
+            signupButton.leadingAnchor.constraint(equalTo:view.leadingAnchor, constant: LocalConstant.buttonsLeadingAnchor),
+            signupButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: LocalConstant.buttonsTrailingAnchor),
+            signupButton.heightAnchor.constraint(equalToConstant: LocalConstant.heightButtons),
         ])
     }
     //MARK: Methods
@@ -128,12 +133,14 @@ final class LoginViewController: UIViewController {
 
 extension LoginViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        content.count
+        loginViewModel.numberOfItemsInSEction()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LocalConstant.identifierCell, for: indexPath) as? LoginCollectionViewCell else { fatalError("Cell error") }
-        cell.configureCell(content: content[indexPath.item])
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LocalConstant.identifierCell, for: indexPath) as? LoginCollectionViewCell,
+              let itemViewModel = loginViewModel.itemViewModel(forIndexPath: indexPath)
+        else { fatalError("Cell error") }
+        cell.configureCell(content: itemViewModel)
         return cell
     }
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {

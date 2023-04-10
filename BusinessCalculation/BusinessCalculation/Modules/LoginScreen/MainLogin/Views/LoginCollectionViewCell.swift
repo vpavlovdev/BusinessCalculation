@@ -30,7 +30,7 @@ class LoginCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         setupCell()
     }
-    
+    @available (*, unavailable)
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
     private func setupCell() {
@@ -56,7 +56,7 @@ class LoginCollectionViewCell: UICollectionViewCell {
         ])
     }
     //MARK: Configure UICollectionViewCell
-    func configureCell(content: Content) {
+    func configureCell(content: ItemViewModelProtocol) {
         mainImageView.image = UIImage(named: content.imageName)
         mainLabel.text = content.title
         descriptionLabel.text = content.description
