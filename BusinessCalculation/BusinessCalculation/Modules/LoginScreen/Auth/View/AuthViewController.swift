@@ -18,6 +18,7 @@ fileprivate enum LocalConstants {
     static let mainLabelText = "Log in to BusiCal"
     static let errorLabelStatus = "Неверная пара логин/пароль"
     static let mainLabelFont: CGFloat = 24
+    static let statusLabelFont: CGFloat = 16
     static let loginTextFieldPlacaholder = "Username or Email"
     static let passwordTextFieldPlaceholder = "Entry your password"
     static let appleButtonCornerRadius: CGFloat = 15
@@ -56,6 +57,13 @@ final class AuthViewController: UIViewController {
         textField.placeholder = LocalConstants.passwordTextFieldPlaceholder
         textField.delegate = self
         return textField
+    }()
+    private var statusTextLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.font = .systemFont(ofSize: LocalConstants.statusLabelFont)
+        label.textColor = .statusLabelColor
+        return label
     }()
     private let loginButton: CustomButton = {
         let button = CustomButton()
@@ -124,7 +132,7 @@ final class AuthViewController: UIViewController {
         view.backgroundColor = .mainWhite
         let separator = createSeparator()
         
-        [mainLabel, loginNameTextField, passworTextField, loginButton, googleButton, appleButton, separator].forEach {
+        [mainLabel, loginNameTextField, passworTextField, statusTextLabel, loginButton, googleButton, appleButton, separator].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -144,7 +152,13 @@ final class AuthViewController: UIViewController {
             passworTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: LocalConstants.textFieldTrailingAnchor),
             passworTextField.heightAnchor.constraint(equalToConstant: LocalConstants.textFieldHeight),
             
-            loginButton.topAnchor.constraint(equalTo: passworTextField.bottomAnchor, constant: 15),
+            statusTextLabel.topAnchor.constraint(equalTo: passworTextField.bottomAnchor, constant: 7),
+            statusTextLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            statusTextLabel.heightAnchor.constraint(equalToConstant: 20),
+            statusTextLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LocalConstants.textFieldLeadingAnchor),
+            statusTextLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: LocalConstants.textFieldTrailingAnchor),
+            
+            loginButton.topAnchor.constraint(equalTo: statusTextLabel.bottomAnchor, constant: 7),
             loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LocalConstants.buttonLeadingAnchor),
             loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: LocalConstants.buttonTrailingAnchor),
             loginButton.heightAnchor.constraint(equalToConstant: LocalConstants.buttonHeight),
