@@ -16,7 +16,6 @@ import GoogleSignInSwift
 fileprivate enum LocalConstants {
     static let navigationItemTitle = "Business calculation"
     static let mainLabelText = "Log in to BusiCal"
-    static let errorLabelStatus = "Неверная пара логин/пароль"
     static let mainLabelFont: CGFloat = 24
     static let statusLabelFont: CGFloat = 16
     static let loginTextFieldPlacaholder = "Username or Email"
@@ -86,6 +85,7 @@ final class AuthViewController: UIViewController {
         setupNavigationBar()
         setupUserInterface()
         addMethods()
+        bindAuthViewModel()
     }
     
     //MARK: Create SeparatorView
@@ -190,6 +190,14 @@ final class AuthViewController: UIViewController {
     }
     @objc private func googleTapped() {
         authViewModel.signInWithGoogle()
+    }
+    //MARK: Bind ViewModel
+    private func bindAuthViewModel() {
+         authViewModel.statusText.bind { statusText in
+            DispatchQueue.main.async {
+                self.statusTextLabel.text = statusText
+            }
+        }
     }
 }
 

@@ -45,7 +45,7 @@ class FirebaseAPIManager {
     }
     
     func signInUser(email: String, password: String) {
-        Auth.auth().signIn(withEmail: email, password: password) { (resutl, error) in
+        Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
             guard error == nil else { return }
             print("We auth in app")
             UserDefaults.standard.set(true, forKey: "Loged")
