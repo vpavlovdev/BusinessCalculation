@@ -20,8 +20,9 @@ extension AuthViewModel: AuthViewModelProtocol {
     
     func signIn(email: String, password: String) {
         //Auth in app
-        FirebaseAPIManager.shared.signInUser(email: email, password: password)
-        text.value = "Неверная пара логин/пароль"
+        FirebaseAPIManager.shared.signInUser(email: email, password: password) { [weak self] errorText in
+            self?.text.value = errorText
+        }
         //Get current user
         
     }

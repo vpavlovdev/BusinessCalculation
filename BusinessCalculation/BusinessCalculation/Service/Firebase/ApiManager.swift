@@ -26,7 +26,7 @@ class FirebaseAPIManager {
         db = Firestore.firestore()
         return db
     }
-    
+    //MARK: Reg newUser
     func registrationNewUser(newUser: RegisterUser) {
         DispatchQueue.main.async {
             Auth.auth().createUser(withEmail: newUser.email, password: newUser.password) { (result, error) in
@@ -43,15 +43,28 @@ class FirebaseAPIManager {
             }
         }
     }
-    
-    func signInUser(email: String, password: String) {
+    //MARK: SignIn with Email
+    func signInUser(email: String, password: String, completion: @escaping (_ errorText: String) -> Void) {
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
-            guard error == nil else { return }
-            print("We auth in app")
+            guard error == nil else {
+                //Handle AuthErrors
+                if let castError = error as NSError?,
+                   let codeError = AuthErrorCode.Code(rawValue: castError.code) {
+                    switch codeError {
+                    case .wrongPassword,
+                         .invalidEmail: completion("Неверная пара email/пароль")
+                    case .userNotFound: completion("Пользователь не найден")
+                    case .networkError: completion("Отсутсвует интернет соединение")
+                    default: return
+                    }
+                }
+                return }
+            
             UserDefaults.standard.set(true, forKey: "Loged")
             (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(vc: MainScreenTabBarContoller())
         }
     }
+    //MARK: SignIn with Google
     func signInGoogle() {
         DispatchQueue.main.async {
             guard let clientID = FirebaseApp.app()?.options.clientID else { return }
@@ -74,6 +87,7 @@ class FirebaseAPIManager {
             
         }
     }
+    //MARK: Delete user
     func  deleteUser(completion: @escaping (Error?) -> Void) {
         guard let user = Auth.auth().currentUser else { return }
         user.delete { error in
@@ -81,6 +95,7 @@ class FirebaseAPIManager {
             completion(nil)
         }
     }
+    //MARK: Get user
     func getUser(completion: @escaping (AuthUserModel)-> Void) {
         guard let user = Auth.auth().currentUser,
               let email = user.email else { return }
