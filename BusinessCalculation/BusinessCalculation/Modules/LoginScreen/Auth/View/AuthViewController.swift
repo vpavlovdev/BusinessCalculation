@@ -12,8 +12,10 @@ import FirebaseFirestore
 import Firebase
 import GoogleSignIn
 import GoogleSignInSwift
+import Lottie
 
 fileprivate enum LocalConstants {
+    static let lotieAnimation = "Loading"
     static let navigationItemTitle = "Business calculation"
     static let mainLabelText = "Log in to BusiCal"
     static let mainLabelFont: CGFloat = 24
@@ -34,6 +36,14 @@ final class AuthViewController: UIViewController {
     private var authViewModel: AuthViewModelProtocol = AuthViewModel()
     
     //MARK: UIElements
+    private var animationLoading: LottieAnimationView = {
+        let lotie = LottieAnimationView(name: LocalConstants.lotieAnimation)
+        lotie.loopMode = .loop
+        lotie.contentMode = .scaleAspectFit
+        lotie.isHidden = true
+        lotie.animationSpeed = 2
+        return lotie
+    }()
     private let mainLabel: UILabel = {
         let label = UILabel()
         label.text = LocalConstants.mainLabelText
@@ -132,7 +142,7 @@ final class AuthViewController: UIViewController {
         view.backgroundColor = .mainWhite
         let separator = createSeparator()
         
-        [mainLabel, loginNameTextField, passworTextField, statusTextLabel, loginButton, googleButton, appleButton, separator].forEach {
+        [mainLabel, loginNameTextField, passworTextField, statusTextLabel, loginButton, googleButton, appleButton, separator, animationLoading].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -176,6 +186,11 @@ final class AuthViewController: UIViewController {
             separator.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             separator.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             separator.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 20),
+            
+            animationLoading.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            animationLoading.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            animationLoading.heightAnchor.constraint(equalToConstant: 150),
+            animationLoading.widthAnchor.constraint(equalToConstant: 150),
         ])
     }
     //MARK: Add methods
@@ -186,7 +201,21 @@ final class AuthViewController: UIViewController {
     @objc private func loginTapped(sender: CustomButton) {
         guard let email = loginNameTextField.text,
               let password = passworTextField.text else { return }
-        authViewModel.signIn(email: email, password: password)
+        startAnimation()
+        
+        authViewModel.signIn(email: email, password: password) {
+            DispatchQueue.main.async {
+                self.stopAnimation()
+            }
+        }
+    }
+    private func startAnimation() {
+        animationLoading.isHidden = false
+        animationLoading.play()
+    }
+    private func stopAnimation() {
+        animationLoading.stop()
+        animationLoading.isHidden = true
     }
     @objc private func googleTapped() {
         authViewModel.signInWithGoogle()

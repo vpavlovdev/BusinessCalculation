@@ -9,6 +9,6 @@ import Foundation
 
 protocol AuthViewModelProtocol {
     var statusText: Dynamic<String> { get }
-    func signIn(email: String, password: String)
+    func signIn(email: String, password: String, endLoading: @escaping () -> Void)
     func signInWithGoogle()
 }

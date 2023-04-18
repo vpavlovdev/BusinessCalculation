@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE232E9629EE8A600067C283 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = CE232E9529EE8A600067C283 /* Lottie */; };
+		CE232E9829EF0A390067C283 /* Loading.json in Resources */ = {isa = PBXBuildFile; fileRef = CE232E9729EF0A390067C283 /* Loading.json */; };
 		CE27CD2B29CB1D8E00974EB7 /* GoogleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE27CD2A29CB1D8E00974EB7 /* GoogleButton.swift */; };
 		CE27CD3529CE0D2800974EB7 /* MainScreenTabBarContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE27CD3429CE0D2800974EB7 /* MainScreenTabBarContoller.swift */; };
 		CE27CD3829CE257900974EB7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE27CD3729CE257900974EB7 /* ProfileViewController.swift */; };
@@ -52,6 +54,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE232E9729EF0A390067C283 /* Loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Loading.json; sourceTree = "<group>"; };
 		CE27CD2A29CB1D8E00974EB7 /* GoogleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleButton.swift; sourceTree = "<group>"; };
 		CE27CD3429CE0D2800974EB7 /* MainScreenTabBarContoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenTabBarContoller.swift; sourceTree = "<group>"; };
 		CE27CD3729CE257900974EB7 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -97,6 +100,7 @@
 			files = (
 				CE35704A29C4BED300A5A0C4 /* FirebaseDatabase in Frameworks */,
 				CE35703F29C4B6DC00A5A0C4 /* FirebaseDatabaseSwift in Frameworks */,
+				CE232E9629EE8A600067C283 /* Lottie in Frameworks */,
 				CE35703D29C4B6DC00A5A0C4 /* FirebaseAnalytics in Frameworks */,
 				CE35706229C85D1400A5A0C4 /* GoogleSignInSwift in Frameworks */,
 				CE35704129C4B6DC00A5A0C4 /* FirebaseFirestoreSwift in Frameworks */,
@@ -109,6 +113,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE232E9929EF19AF0067C283 /* LotieFiles */ = {
+			isa = PBXGroup;
+			children = (
+				CE232E9729EF0A390067C283 /* Loading.json */,
+			);
+			path = LotieFiles;
+			sourceTree = "<group>";
+		};
 		CE27CD3229CE09CD00974EB7 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
@@ -294,6 +306,7 @@
 		CE67FB8229BB7E5500C21E2F /* BusinessCalculation */ = {
 			isa = PBXGroup;
 			children = (
+				CE232E9929EF19AF0067C283 /* LotieFiles */,
 				CE356FD829BCA3AC00A5A0C4 /* Application */,
 				CE35704C29C5A8BF00A5A0C4 /* Service */,
 				CE27CD3229CE09CD00974EB7 /* Modules */,
@@ -336,6 +349,7 @@
 				CE35704929C4BED300A5A0C4 /* FirebaseDatabase */,
 				CE35705F29C85D1400A5A0C4 /* GoogleSignIn */,
 				CE35706129C85D1400A5A0C4 /* GoogleSignInSwift */,
+				CE232E9529EE8A600067C283 /* Lottie */,
 			);
 			productName = BusinessCalculation;
 			productReference = CE67FB8029BB7E5500C21E2F /* BusinessCalculation.app */;
@@ -368,6 +382,7 @@
 			packageReferences = (
 				CE35703B29C4B6DC00A5A0C4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				CE35705E29C85D1400A5A0C4 /* XCRemoteSwiftPackageReference "GoogleSignIn-Ios" */,
+				CE232E9429EE8A600067C283 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = CE67FB8129BB7E5500C21E2F /* Products */;
 			projectDirPath = "";
@@ -385,6 +400,7 @@
 			files = (
 				CE67FB9029BB7E6000C21E2F /* LaunchScreen.storyboard in Resources */,
 				CE67FB8D29BB7E6000C21E2F /* Assets.xcassets in Resources */,
+				CE232E9829EF0A390067C283 /* Loading.json in Resources */,
 				CE35703929C4B0D900A5A0C4 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -622,6 +638,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		CE232E9429EE8A600067C283 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 		CE35703B29C4B6DC00A5A0C4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -641,6 +665,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		CE232E9529EE8A600067C283 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE232E9429EE8A600067C283 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
 		CE35703C29C4B6DC00A5A0C4 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CE35703B29C4B6DC00A5A0C4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

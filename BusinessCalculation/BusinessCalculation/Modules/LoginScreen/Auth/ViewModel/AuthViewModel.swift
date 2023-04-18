@@ -18,10 +18,11 @@ extension AuthViewModel: AuthViewModelProtocol {
         }
     }
     
-    func signIn(email: String, password: String) {
+    func signIn(email: String, password: String, endLoading: @escaping () -> Void) {
         //Auth in app
         FirebaseAPIManager.shared.signInUser(email: email, password: password) { [weak self] errorText in
             self?.text.value = errorText
+            endLoading()
         }
         //Get current user
         
