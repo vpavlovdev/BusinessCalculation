@@ -109,6 +109,7 @@
       }
     },
     {
+<<<<<<< HEAD
       "identity" : "lottie-ios",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/airbnb/lottie-ios.git",
@@ -118,6 +119,8 @@
       }
     },
     {
+=======
+>>>>>>> 2efc3e8 (addedLotieLibrary)
       "identity" : "nanopb",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/nanopb.git",
