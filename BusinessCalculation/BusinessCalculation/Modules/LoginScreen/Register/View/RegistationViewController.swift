@@ -11,15 +11,23 @@ import FirebaseAuth
 import FirebaseFirestore
 import Firebase
 
+fileprivate enum LocalConstants {
+    static let mainLabelText = "Sign up to BusiCal"
+    static let mainLabelFont: CGFloat = 22
+    static let firstNamePlaceholder = "First name"
+    static let lastNamePlaceholder = "Last name"
+    static let emailPlaceholder = "E-mail"
+    static let passwordPlaceholder = "Password(8 or more characters)"
+    static let navigationItemTitle = "Business calculation"
+}
 final class RegistationViewController: UIViewController {
-    //User
-    private var newUser: RegisterUser?
+    private var registrationViewModel: RegistrationViewModelProtocol = RegistrationViewModel()
     //MARK: UIElements
     private let mainLabel: UILabel = {
         let label = UILabel()
-        label.text = "Sign up to BusiCal"
+        label.text = LocalConstants.mainLabelText
         label.textAlignment = .center
-        label.font = .boldSystemFont(ofSize: 22)
+        label.font = .boldSystemFont(ofSize: LocalConstants.mainLabelFont)
         return label
     }()
     private let googleButton: GoogleButton = {
@@ -37,7 +45,8 @@ final class RegistationViewController: UIViewController {
         scroll.contentSize = .init(width: view.frame.size.width, height: view.frame.size.height)
         return scroll
     }()
-    private lazy var separator = createSeparator()
+    private lazy var separator = self.createSeparator()
+    
     private let createButton: CustomButton = {
         let button = CustomButton()
         button.configure(type: .createButton)
@@ -45,28 +54,32 @@ final class RegistationViewController: UIViewController {
     }()
     
     //MARK: TextFields
-    private let firstNameTextField: CustomTextField = {
+    private lazy var firstNameTextField: CustomTextField = {
         let textField = CustomTextField()
-        textField.placeholder = "First name"
+        textField.placeholder = LocalConstants.firstNamePlaceholder
         textField.tag = 0
+        textField.delegate = self
         return textField
     }()
-    private let lastNameTextField: CustomTextField = {
+    private lazy var lastNameTextField: CustomTextField = {
         let textField = CustomTextField()
-        textField.placeholder = "Last name"
+        textField.placeholder = LocalConstants.lastNamePlaceholder
         textField.tag = 1
+        textField.delegate = self
         return textField
     }()
-    private let emailTextField: CustomTextField = {
+    private lazy var emailTextField: CustomTextField = {
         let textField = CustomTextField()
-        textField.placeholder = "Email"
+        textField.placeholder = LocalConstants.emailPlaceholder
         textField.tag = 2
+        textField.delegate = self
         return textField
     }()
-    private let passwordTextField: CustomTextField = {
+    private lazy var passwordTextField: CustomTextField = {
         let textField = CustomTextField()
-        textField.placeholder = "Password(8 or more characters)"
+        textField.placeholder = LocalConstants.passwordPlaceholder
         textField.tag = 3
+        textField.delegate = self
         return textField
     }()
     //MARK: Checkbox
@@ -117,41 +130,10 @@ final class RegistationViewController: UIViewController {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithTransparentBackground()
         navigationController?.navigationBar.standardAppearance = appearance
-        navigationItem.title = "Business calculation"
+        navigationItem.title = LocalConstants.navigationItemTitle
         navigationController?.navigationBar.prefersLargeTitles = true
     }
-    //MARK: Create SeparatorView
-    private func createSeparator() -> UIView {
-        let separatorView = UIView()
-        let viewOne = UIView()
-        viewOne.backgroundColor = .gray
-        let viewTwo = UIView()
-        viewTwo.backgroundColor = .gray
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 15)
-        label.text = "or"
-        
-        [viewOne, viewTwo, label].forEach {
-            separatorView.addSubview($0)
-            $0.translatesAutoresizingMaskIntoConstraints = false
-        }
-        NSLayoutConstraint.activate([
-            label.centerXAnchor.constraint(equalTo: separatorView.centerXAnchor),
-            label.widthAnchor.constraint(equalToConstant: 20),
-            label.heightAnchor.constraint(equalToConstant: 20),
-            
-            viewOne.centerYAnchor.constraint(equalTo: label.centerYAnchor),
-            viewOne.leadingAnchor.constraint(equalTo: separatorView.leadingAnchor, constant: 30),
-            viewOne.trailingAnchor.constraint(equalTo: label.leadingAnchor, constant: -10),
-            viewOne.heightAnchor.constraint(equalToConstant: 1),
-            
-            viewTwo.centerYAnchor.constraint(equalTo: label.centerYAnchor),
-            viewTwo.leadingAnchor.constraint(equalTo: label.trailingAnchor, constant: 10),
-            viewTwo.trailingAnchor.constraint(equalTo: separatorView.trailingAnchor, constant: -30),
-            viewTwo.heightAnchor.constraint(equalToConstant: 1),
-        ])
-        return separatorView
-    }
+
     //MARK: Setup UI
     private func setupUserInterface() {
         view.backgroundColor = .mainWhite
@@ -168,11 +150,6 @@ final class RegistationViewController: UIViewController {
     }
     //MARK: Setup UIScrollView
     private func setupScrollView() {
-        firstNameTextField.delegate = self
-        lastNameTextField.delegate = self
-        emailTextField.delegate = self
-        passwordTextField.delegate = self
-        
         [mainLabel, googleButton, appleButton, separator, firstNameTextField, lastNameTextField, emailTextField, passwordTextField, checkBoxEmailButton, emailText, checkBoxTearmButton, tearmsText, createButton].forEach {
             scrollView.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
@@ -243,7 +220,7 @@ final class RegistationViewController: UIViewController {
             createButton.heightAnchor.constraint(equalToConstant: 60),
         ])
     }
-   //MARK: Create UIAlertContoller
+   //MARK: Create UIAlertContollers
     private func setupAlert() {
         let alertViewControlelr = UIAlertController(title: "Dear user",
                                                     message: "You need agree to the Tearms of Service, including the Privacy Policy. to continue working.",
@@ -287,17 +264,17 @@ final class RegistationViewController: UIViewController {
         }
 }
     @objc private func registration(sender: CustomButton) {
-        print(#function)
         guard checkboxTearmsCheck == true else {
            setupAlert()
             return
         }
-        let user = RegisterUser(firstName: firstNameTextField.text!, lastName: lastNameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!)
-        print(user)
-        FirebaseAPIManager.shared.registrationNewUser(newUser: user)
+        registrationViewModel.registrationNewUser(name: firstNameTextField.text,
+                                                  lastName: lastNameTextField.text,
+                                                  email: emailTextField.text,
+                                                  password: passwordTextField.text)
     }
     @objc private func signInWithGoogle() {
-        FirebaseAPIManager.shared.signInGoogle()
+        registrationViewModel.signInWithGoogle()
     }
     //MARK: Keyboard Methods
     @objc func keyboardShow(notification: NSNotification) {

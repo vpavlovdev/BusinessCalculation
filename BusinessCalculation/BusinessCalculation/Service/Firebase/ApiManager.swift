@@ -27,7 +27,7 @@ class FirebaseAPIManager {
         return db
     }
     //MARK: Reg newUser
-    func registrationNewUser(newUser: RegisterUser) {
+    func registrationNewUser(newUser: RegistrationUser) {
         DispatchQueue.main.async {
             Auth.auth().createUser(withEmail: newUser.email, password: newUser.password) { (result, error) in
                 guard error == nil  else { print("this error "); return }

@@ -8,5 +8,6 @@
 import Foundation
 
 protocol RegistrationViewModelProtocol {
-    
+    func registrationNewUser(name: String?, lastName: String?, email: String?, password: String?)
+    func signInWithGoogle()
 }

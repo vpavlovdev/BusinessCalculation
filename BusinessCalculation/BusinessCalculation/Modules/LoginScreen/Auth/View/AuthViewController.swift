@@ -88,6 +88,7 @@ final class AuthViewController: UIViewController {
         button.cornerRadius = LocalConstants.appleButtonCornerRadius
         return button
     }()
+    private lazy var separator = self.createSeparator()
     
     //MARK: Life cicle
     override func viewDidLoad() {
@@ -98,38 +99,6 @@ final class AuthViewController: UIViewController {
         bindAuthViewModel()
     }
     
-    //MARK: Create SeparatorView
-    private func createSeparator() -> UIView {
-        let separatorView = UIView()
-        let viewOne = UIView()
-        viewOne.backgroundColor = .separatorColor
-        let viewTwo = UIView()
-        viewTwo.backgroundColor = .separatorColor
-        let label = UILabel()
-        label.font = .systemFont(ofSize: LocalConstants.separatotTextFont)
-        label.text = LocalConstants.separatorText
-        
-        [viewOne, viewTwo, label].forEach {
-            separatorView.addSubview($0)
-            $0.translatesAutoresizingMaskIntoConstraints = false
-        }
-        NSLayoutConstraint.activate([
-            label.centerXAnchor.constraint(equalTo: separatorView.centerXAnchor),
-            label.widthAnchor.constraint(equalToConstant: 20),
-            label.heightAnchor.constraint(equalToConstant: 20),
-            
-            viewOne.centerYAnchor.constraint(equalTo: label.centerYAnchor),
-            viewOne.leadingAnchor.constraint(equalTo: separatorView.leadingAnchor, constant: 30),
-            viewOne.trailingAnchor.constraint(equalTo: label.leadingAnchor, constant: -10),
-            viewOne.heightAnchor.constraint(equalToConstant: 1),
-            
-            viewTwo.centerYAnchor.constraint(equalTo: label.centerYAnchor),
-            viewTwo.leadingAnchor.constraint(equalTo: label.trailingAnchor, constant: 10),
-            viewTwo.trailingAnchor.constraint(equalTo: separatorView.trailingAnchor, constant: -30),
-            viewTwo.heightAnchor.constraint(equalToConstant: 1),
-        ])
-        return separatorView
-    }
     //MARK: Setup UI
     private func setupNavigationBar() {
         let appearance = UINavigationBarAppearance()
@@ -140,7 +109,6 @@ final class AuthViewController: UIViewController {
     }
     private func setupUserInterface() {
         view.backgroundColor = .mainWhite
-        let separator = createSeparator()
         
         [mainLabel, loginNameTextField, passworTextField, statusTextLabel, loginButton, googleButton, appleButton, separator, animationLoading].forEach {
             view.addSubview($0)
