@@ -16,7 +16,8 @@ extension RegistrationViewModel: RegistrationViewModelProtocol {
         FirebaseAPIManager.shared.signInGoogle()
     }
     
-    func registrationNewUser(name: String?, lastName: String?, email: String?, password: String?) {
+    func registrationNewUser(name: String?, lastName: String?, email: String?, password: String?, endRegistration: @escaping () -> Void)
+    {
         guard let myName = name,
               let myLastName = lastName,
               let myEmail = email,
@@ -26,7 +27,7 @@ extension RegistrationViewModel: RegistrationViewModelProtocol {
                                        email: myEmail,
                                        password: myPassword)
         FirebaseAPIManager.shared.registrationNewUser(newUser: regUser)
-        
+        endRegistration()
     }
     
  

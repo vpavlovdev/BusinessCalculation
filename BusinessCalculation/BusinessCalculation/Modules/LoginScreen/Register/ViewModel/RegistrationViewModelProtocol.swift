@@ -8,6 +8,6 @@
 import Foundation
 
 protocol RegistrationViewModelProtocol {
-    func registrationNewUser(name: String?, lastName: String?, email: String?, password: String?)
+    func registrationNewUser(name: String?, lastName: String?, email: String?, password: String?, endRegistration: @escaping () -> Void)
     func signInWithGoogle()
 }

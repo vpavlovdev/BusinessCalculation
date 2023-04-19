@@ -10,8 +10,10 @@ import AuthenticationServices
 import FirebaseAuth
 import FirebaseFirestore
 import Firebase
+import Lottie
 
 fileprivate enum LocalConstants {
+    static let lotieAnimation = "Loading"
     static let mainLabelText = "Sign up to BusiCal"
     static let mainLabelFont: CGFloat = 22
     static let firstNamePlaceholder = "First name"
@@ -51,6 +53,14 @@ final class RegistationViewController: UIViewController {
         let button = CustomButton()
         button.configure(type: .createButton)
         return button
+    }()
+    private var animationLoading: LottieAnimationView = {
+        let lotie = LottieAnimationView(name: LocalConstants.lotieAnimation)
+        lotie.loopMode = .loop
+        lotie.contentMode = .scaleAspectFit
+        lotie.isHidden = true
+        lotie.animationSpeed = 2
+        return lotie
     }()
     
     //MARK: TextFields
@@ -150,7 +160,7 @@ final class RegistationViewController: UIViewController {
     }
     //MARK: Setup UIScrollView
     private func setupScrollView() {
-        [mainLabel, googleButton, appleButton, separator, firstNameTextField, lastNameTextField, emailTextField, passwordTextField, checkBoxEmailButton, emailText, checkBoxTearmButton, tearmsText, createButton].forEach {
+        [mainLabel, googleButton, appleButton, separator, firstNameTextField, lastNameTextField, emailTextField, passwordTextField, checkBoxEmailButton, emailText, checkBoxTearmButton, tearmsText, createButton, animationLoading].forEach {
             scrollView.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -218,6 +228,11 @@ final class RegistationViewController: UIViewController {
             createButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             createButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             createButton.heightAnchor.constraint(equalToConstant: 60),
+            
+            animationLoading.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            animationLoading.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor),
+            animationLoading.widthAnchor.constraint(equalToConstant: 150),
+            animationLoading.heightAnchor.constraint(equalToConstant: 150),
         ])
     }
    //MARK: Create UIAlertContollers
@@ -268,13 +283,27 @@ final class RegistationViewController: UIViewController {
            setupAlert()
             return
         }
+        startAnimation()
         registrationViewModel.registrationNewUser(name: firstNameTextField.text,
                                                   lastName: lastNameTextField.text,
                                                   email: emailTextField.text,
-                                                  password: passwordTextField.text)
+                                                  password: passwordTextField.text) {
+            DispatchQueue.main.async {
+                self.stopAnimation()
+            }
+        }
     }
     @objc private func signInWithGoogle() {
         registrationViewModel.signInWithGoogle()
+    }
+    //MARK: Animation
+    private func startAnimation() {
+        animationLoading.isHidden = false
+        animationLoading.play()
+    }
+    private func stopAnimation() {
+        animationLoading.stop()
+        animationLoading.isHidden = true
     }
     //MARK: Keyboard Methods
     @objc func keyboardShow(notification: NSNotification) {
