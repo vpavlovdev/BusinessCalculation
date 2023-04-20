@@ -39,7 +39,7 @@ class FirebaseAPIManager {
                 { (error) in
                     guard error == nil else { return } //Change label
                 }
-                print("Registration compleate")
+                print("Registration compleated")
             }
         }
     }
